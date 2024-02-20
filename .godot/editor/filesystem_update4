@@ -1,3 +1,5 @@
 res://global/Background.tscn
 res://global/Foreground.tscn
 res://global/Palette.gd
+res://global/Save.gd
+res://global/Functions.gd
