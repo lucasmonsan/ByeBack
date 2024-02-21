@@ -1,5 +1,12 @@
 res://global/Background.tscn
 res://global/Foreground.tscn
-res://global/Palette.gd
-res://global/Save.gd
+res://menus/Title.tscn
+res://assets/themes/monsan.tres
+res://assets/shaders/shake.gdshader
+res://generic/button.gd
+res://game/Dialogues.tscn
+res://assets/shaders/wave.gdshader
+res://README.md
 res://global/Functions.gd
+res://global/Save.gd
+res://global/Debug.tscn

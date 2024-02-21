@@ -1,0 +1,273 @@
+[gd_scene load_steps=17 format=3 uid="uid://nnw8qfnqbfsh"]
+
+[ext_resource type="Shader" path="res://assets/shaders/wave.gdshader" id="1_437jn"]
+[ext_resource type="Texture2D" uid="uid://dbo7vfw00qkv4" path="res://assets/gui/speech_balloon.webp" id="2_2nvb1"]
+[ext_resource type="Texture2D" uid="uid://boyu7knmrrx85" path="res://assets/chars/grandpa/talk00.webp" id="2_88bp5"]
+[ext_resource type="Texture2D" uid="uid://buktsw72jlk3e" path="res://assets/chars/grandpa/talk01.webp" id="3_mkyr2"]
+[ext_resource type="Texture2D" uid="uid://1noas4uvcxss" path="res://assets/gui/degrade.webp" id="5_8gw0n"]
+
+[sub_resource type="GDScript" id="GDScript_dxpal"]
+resource_name = "dialogues"
+script/source = "extends CanvasLayer
+
+func _ready(): SAVE.step = 1
+
+func _start(npc, speed = 0.5):
+	SAVE._step_once()
+	npc.visible = true
+	get_tree().create_tween().tween_property(npc, \"modulate\", Color(\"FFF\"), 0.5).set_ease(Tween.EASE_IN_OUT)
+	await get_tree().create_timer(speed).timeout
+	get_tree().create_tween().tween_property($speech_panel, \"modulate\", Color(\"FFF\"), 0.5).set_ease(Tween.EASE_IN_OUT)
+	await get_tree().create_timer(speed/2).timeout
+	SAVE._next_step()
+
+func _process(_delta):
+	if (SAVE.day == 1):
+		if (SAVE.step == 1): _start($grandpa)
+		elif (SAVE.step == 2): 
+			$speech_panel._start(\"[b]Welcome[/b] to the online bb code generator Like link code, html [url=https://www.yttags.com]bbcode[/url]! Edit your text and click the button to get your bb code.\")
+			$grandpa.play(\"talk\")
+		elif (SAVE.step == 3):
+			$grandpa.play(\"idle\")
+			$answear_panel._normal(\"Acordar\", \"Soneca\", \"Dar o cú\")
+		elif (SAVE.step == 4): 
+			$speech_panel._start(\"[wave]Welcome[/wave] to the online bb code generator Like link code, html [url=https://www.yttags.com]bbcode[/url]! Edit your text and click the button to get your bb code.\")
+			$grandpa.play(\"talk\")
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jrexh"]
+shader = ExtResource("1_437jn")
+shader_parameter/amplitude = 0.2
+shader_parameter/frequency = 4.0
+shader_parameter/time_scale = 4.0
+shader_parameter/intensity = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_28c6c"]
+texture = ExtResource("2_2nvb1")
+texture_margin_left = 48.0
+texture_margin_top = 44.0
+texture_margin_right = 41.0
+texture_margin_bottom = 109.0
+region_rect = Rect2(0, 0, 389, 327)
+
+[sub_resource type="GDScript" id="GDScript_03fvf"]
+resource_name = "speech"
+script/source = "extends PanelContainer
+
+func _start(text, time = 0.05):
+	SAVE._step_once()
+	var text_array = text.split(\". \")
+	var array_count = 0
+	$RichText.text = \"[center]\" + text_array[array_count]
+	$RichText.visible_characters = 0
+	$RichText.visible_ratio = 0
+	$RichText.visible = true
+	
+	while (array_count < text_array.size()):
+		while $RichText.visible_characters < ($RichText.text.length() - extract_bbcode_tags($RichText.text)):
+			$RichText.visible_characters += 1
+			await (get_tree().create_timer(time).timeout)
+		
+		if (array_count < text_array.size() -1):
+			await (get_tree().create_timer(time * 5).timeout)
+			array_count += 1
+			$RichText.text += \" \" + text_array[array_count]
+		else: break
+	
+	SAVE._next_step()
+
+func extract_bbcode_tags(string):
+	var tags = \"\"
+	var inside = false
+	
+	for character in string:
+		if (character == \"[\"): inside = true
+		if (inside): tags += character
+		if (character == \"]\"): inside = false
+	return tags.length()
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0h3if"]
+shader = ExtResource("1_437jn")
+shader_parameter/amplitude = 0.2
+shader_parameter/frequency = 4.0
+shader_parameter/time_scale = 4.0
+shader_parameter/intensity = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_884ma"]
+shader = ExtResource("1_437jn")
+shader_parameter/amplitude = 0.5
+shader_parameter/frequency = 2.0
+shader_parameter/time_scale = 2.0
+shader_parameter/intensity = 2.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wlww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_88bp5")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_88bp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mkyr2")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 8.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhvax"]
+
+[sub_resource type="GDScript" id="GDScript_jrkly"]
+resource_name = "answers"
+script/source = "extends PanelContainer
+
+@export var choice1: Button = null
+@export var choice2: Button = null
+@export var choice3: Button = null
+@export var choice4: Button = null
+
+#------------------------------------------------------------------------------#
+
+func _normal(p_choice1 = \"\", p_choice2 = \"\", p_choice3 = \"\", p_choice4 = \"\"):
+	SAVE._step_once()
+	SAVE.touch = false
+	SAVE.choice = \"\"
+	
+	choice1.text = p_choice1
+	choice2.text = p_choice2
+	choice3.text = p_choice3
+	choice4.text = p_choice4
+	
+	choice1.visible = (p_choice1 != \"\")
+	choice2.visible = (p_choice2 != \"\")
+	choice3.visible = (p_choice3 != \"\")
+	choice4.visible = (p_choice4 != \"\")
+	
+	visible = true
+	get_tree().create_tween().tween_property(self, \"modulate\", Color(\"FFF\"), 0.5).set_ease(Tween.EASE_IN_OUT)
+	await get_tree().create_timer(0.5).timeout
+	SAVE.touch = true
+
+#------------------------------------------------------------------------------#
+
+func _handle_click(choice):
+	SAVE.touch = false
+	SAVE.choice = choice.text
+	get_tree().create_tween().tween_property(self, \"modulate\", Color(\"FFF0\"), 0.5).set_ease(Tween.EASE_IN_OUT)
+	await get_tree().create_timer(0.5).timeout
+	visible = false
+	SAVE._next_step()
+	#$Click.play()
+
+#------------------------------------------------------------------------------#
+
+func _on_button_1_pressed(): if SAVE.touch: _handle_click(choice1)
+func _on_button_2_pressed(): if SAVE.touch: _handle_click(choice2)
+func _on_button_3_pressed(): if SAVE.touch: _handle_click(choice3)
+func _on_button_4_pressed(): if SAVE.touch: _handle_click(choice4)
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0w0u0"]
+shader = ExtResource("1_437jn")
+shader_parameter/amplitude = 0.2
+shader_parameter/frequency = 4.0
+shader_parameter/time_scale = 4.0
+shader_parameter/intensity = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s8lh8"]
+content_margin_bottom = 16.0
+
+[node name="Dialogues" type="CanvasLayer"]
+script = SubResource("GDScript_dxpal")
+
+[node name="speech_panel" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_jrexh")
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 576.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxTexture_28c6c")
+script = SubResource("GDScript_03fvf")
+
+[node name="RichText" type="RichTextLabel" parent="speech_panel"]
+material = SubResource("ShaderMaterial_0h3if")
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="grandpa" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_884ma")
+position = Vector2(352, 960)
+scale = Vector2(0.964525, 0.964525)
+sprite_frames = SubResource("SpriteFrames_3wlww")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="answear_panel" type="PanelContainer" parent="." node_paths=PackedStringArray("choice1", "choice2", "choice3", "choice4")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lhvax")
+script = SubResource("GDScript_jrkly")
+choice1 = NodePath("VBox/Button1")
+choice2 = NodePath("VBox/Button2")
+choice3 = NodePath("VBox/Button3")
+choice4 = NodePath("VBox/Button4")
+
+[node name="TextureRect" type="TextureRect" parent="answear_panel"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_8gw0n")
+expand_mode = 1
+
+[node name="VBox" type="VBoxContainer" parent="answear_panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="Button1" type="Button" parent="answear_panel/VBox"]
+material = SubResource("ShaderMaterial_0w0u0")
+layout_mode = 2
+text = "option 1"
+
+[node name="Button2" type="Button" parent="answear_panel/VBox"]
+material = SubResource("ShaderMaterial_0w0u0")
+layout_mode = 2
+text = "option 1"
+
+[node name="Button3" type="Button" parent="answear_panel/VBox"]
+material = SubResource("ShaderMaterial_0w0u0")
+layout_mode = 2
+text = "option 1"
+
+[node name="Button4" type="Button" parent="answear_panel/VBox"]
+material = SubResource("ShaderMaterial_0w0u0")
+layout_mode = 2
+text = "option 1"
+
+[node name="PanelContainer" type="PanelContainer" parent="answear_panel/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s8lh8")
+
+[connection signal="pressed" from="answear_panel/VBox/Button1" to="answear_panel" method="_on_button_1_pressed"]
+[connection signal="pressed" from="answear_panel/VBox/Button2" to="answear_panel" method="_on_button_2_pressed"]
+[connection signal="pressed" from="answear_panel/VBox/Button3" to="answear_panel" method="_on_button_3_pressed"]
+[connection signal="pressed" from="answear_panel/VBox/Button4" to="answear_panel" method="_on_button_4_pressed"]

@@ -4,6 +4,11 @@
 resource_name = "foreground"
 script/source = "extends CanvasLayer
 
+func _ready(): 
+	$ColorRect.color = PALETTE.fg
+	$ColorRect.modulate = Color(\"FFF\")
+	visible = true
+
 func _fade_in(speed = 2.0):
 	var fade_in = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	fade_in.tween_property($ColorRect, \"modulate\", Color(\"FFF0\"), speed)
@@ -17,7 +22,7 @@ func _fade_out(speed = 2.0):
 	await get_tree().create_timer(speed).timeout
 "
 
-[node name="Background" type="CanvasLayer"]
+[node name="Foreground" type="CanvasLayer"]
 layer = 5
 script = SubResource("GDScript_7y6t4")
 
@@ -27,4 +32,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0, 0, 1)
+color = Color(0.113725, 0.12549, 0.129412, 1)

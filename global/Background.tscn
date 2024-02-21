@@ -4,6 +4,11 @@
 resource_name = "background"
 script/source = "extends CanvasLayer
 
+func _ready(): 
+	$ColorRect.color = PALETTE.bg
+	$ColorRect.modulate = Color(\"FFF\")
+	visible = true
+
 func _interpolate(new_color, speed = 1.0):
 	var interpolate = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	interpolate.tween_property($ColorRect, \"color\", new_color, speed)
@@ -21,4 +26,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0, 0, 1)
+color = Color(0.976471, 0.960784, 0.843137, 1)
