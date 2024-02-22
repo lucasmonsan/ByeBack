@@ -23,6 +23,7 @@ PALETTE="*res://global/Palette.gd"
 SAVE="*res://global/Save.gd"
 FUNCTIONS="*res://global/Functions.gd"
 DEBUG="*res://global/Debug.tscn"
+BG_MUSIC="*res://global/BG_Music.tscn"
 
 [display]
 
@@ -45,6 +46,9 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/decals/filter=2
+textures/light_projectors/filter=2

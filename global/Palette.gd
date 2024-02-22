@@ -12,3 +12,4 @@ var light1 = Color("d5c4c1")
 var light2 = Color("bdae93")
 
 var red = Color("fb4934")
+var light_blue = Color("a1f2ec")

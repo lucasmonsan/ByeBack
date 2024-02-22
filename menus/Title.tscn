@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://k320wq88puv2"]
+[gd_scene load_steps=5 format=3 uid="uid://k320wq88puv2"]
 
 [ext_resource type="Shader" path="res://assets/shaders/wave.gdshader" id="1_i578i"]
+[ext_resource type="FontFile" uid="uid://8bgdwklg2lec" path="res://assets/fonts/04B_30__.TTF" id="2_yhe1t"]
 
 [sub_resource type="GDScript" id="GDScript_s7tsf"]
 resource_name = "title"
@@ -9,12 +10,16 @@ script/source = "extends CanvasLayer
 var btn_pos = 0
 
 func _ready():
-	FG._fade_in()
+	if (SAVE.day == 1): 
+		BG_MUSIC.play()
+		BG._change(PALETTE.light_blue)
+		await get_tree().create_timer(6).timeout
+		FG._fade_in()
 
-func _on_button_pressed(): get_tree().change_scene_to_file(\"res://game/Dialogues.tscn\")
+func _on_button_pressed(): get_tree().change_scene_to_file(\"res://game/grandpa_mountain.tscn\")
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g6bkx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tumwg"]
 shader = ExtResource("1_i578i")
 shader_parameter/amplitude = 0.2
 shader_parameter/frequency = 4.0
@@ -25,7 +30,7 @@ shader_parameter/intensity = 4.0
 script = SubResource("GDScript_s7tsf")
 
 [node name="Button" type="Button" parent="."]
-material = SubResource("ShaderMaterial_g6bkx")
+material = SubResource("ShaderMaterial_tumwg")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -39,7 +44,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "COMEÇAR"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.257599, 0.672308, 0.649062, 1)
+theme_override_constants/outline_size = 48
+theme_override_fonts/font = ExtResource("2_yhe1t")
+theme_override_font_sizes/font_size = 80
+text = "BYEBACK"
 flat = true
 icon_alignment = 1
 

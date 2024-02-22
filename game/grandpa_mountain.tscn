@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://boadg8imselxh"]
+
+[ext_resource type="Texture2D" uid="uid://dna2012o3urhv" path="res://assets/bg/sky.webp" id="2_inl85"]
+[ext_resource type="Texture2D" uid="uid://csvrkbqbww10w" path="res://assets/bg/sea.webp" id="3_fmtxa"]
+[ext_resource type="Shader" path="res://assets/shaders/h_infinity.gdshader" id="3_nolby"]
+[ext_resource type="Texture2D" uid="uid://85j568nutkcm" path="res://assets/bg/clouds.webp" id="3_wetl7"]
+[ext_resource type="Texture2D" uid="uid://c1eh8k6mded1f" path="res://assets/bg/far-grounds.webp" id="5_2y0hh"]
+
+[sub_resource type="GDScript" id="GDScript_keu6n"]
+resource_name = "grandpa_mountain"
+script/source = "extends CanvasLayer
+
+func _ready():
+	FG._fade_in()
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mk8sl"]
+shader = ExtResource("3_nolby")
+shader_parameter/speed = 0.005
+shader_parameter/texture = ExtResource("2_inl85")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_viddm"]
+shader = ExtResource("3_nolby")
+shader_parameter/speed = 0.01
+shader_parameter/texture = ExtResource("3_wetl7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kaseb"]
+shader = ExtResource("3_nolby")
+shader_parameter/speed = 0.025
+shader_parameter/texture = ExtResource("3_fmtxa")
+
+[node name="grandpa_mountain" type="CanvasLayer"]
+script = SubResource("GDScript_keu6n")
+
+[node name="bg_color" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.631373, 0.94902, 0.92549, 1)
+
+[node name="sky_texture" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_mk8sl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 800.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_inl85")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="clouds_texture" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_viddm")
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 320.0
+offset_bottom = 576.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_wetl7")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="sea_texture" type="TextureRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_kaseb")
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_fmtxa")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="ground_texture" type="TextureRect" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_2y0hh")
+expand_mode = 1
+stretch_mode = 5

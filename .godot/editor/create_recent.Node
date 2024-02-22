@@ -1,12 +1,13 @@
+AudioStreamPlayer
+ColorRect
+TextureRect
+CanvasLayer
 PanelContainer
 Button
 VBoxContainer
-TextureRect
 FlowContainer
 Label
 AnimationPlayer
 Control
 RichTextLabel
 AnimatedSprite2D
-CanvasLayer
-ColorRect
