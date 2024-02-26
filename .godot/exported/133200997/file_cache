@@ -1,0 +1,9 @@
+res://assets/themes/Monsan_Pixel.tres::40cbf7a412bf1c6d5bb12a1aca1bf793::1708905861::res://.godot/exported/133200997/export-5ddad6b861b780cd63eefaef513d060e-Monsan_Pixel.res
+res://scenes/game/external/grandpa_house.tscn::2258d065de5bf853b0721da1be2ea6a1::1708908982::res://.godot/exported/133200997/export-af38cf4dec6a81249b3f9baff36cc4a9-grandpa_house.scn
+res://scenes/globals/background.tscn::2a24ca7143fcb7dec720d654f1c1c9da::1708908397::res://.godot/exported/133200997/export-5c4e35294a52b69a00cb861f63b906ae-background.scn
+res://scenes/globals/bg_music.tscn::3f0aab103820225e2b9038a5db3846cf::1708908397::res://.godot/exported/133200997/export-fdfe0c4c33c54554d77aa00563acfc45-bg_music.scn
+res://scenes/globals/bg_sfx.tscn::f3342d0bc44fb793b3dafbe85417c540::1708908397::res://.godot/exported/133200997/export-367e6a642b1d722b84da896bd68f3314-bg_sfx.scn
+res://scenes/globals/foreground.tscn::482ed9283694bbcd4d213000c61facc7::1708908397::res://.godot/exported/133200997/export-8a13fdb7e373f79fafd89d669f572c5f-foreground.scn
+res://scenes/globals/Save.tscn::4b4a79f8ffc68d4bd3f4c28952f6dd50::1708908397::res://.godot/exported/133200997/export-854304779d65f79732dab1c53caa4202-Save.scn
+res://scenes/menus/splash.tscn::f82cb537047337c852aec8e714a62e3b::1708908397::res://.godot/exported/133200997/export-28cb18198ccfba47bb3696abd9332bd9-splash.scn
+res://scenes/menus/title.tscn::2fc171cffa691bd09e6717a53ace6a77::1708908397::res://.godot/exported/133200997/export-c5f3fcdcd44d7ed8f13220767d025b51-title.scn

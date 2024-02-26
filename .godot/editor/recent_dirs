@@ -1,6 +1,7 @@
-res://global
-res://assets/shaders
-res://game
-res://assets/fonts
+/home/lucasmonsan
+res://scenes/globals
+res://assets/animations
 res://assets/themes
-res://menus
+res://assets/themes/
+/home/lucasmonsan/Dev/ByeBack/
+res://scenes
