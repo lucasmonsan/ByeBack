@@ -1,0 +1,180 @@
+[gd_scene load_steps=17 format=3 uid="uid://bw2ey0v1yf7pq"]
+
+[ext_resource type="Texture2D" uid="uid://blj6h4yt4kqya" path="res://assets/animations/godot_icon_splash.webp" id="1_j50lt"]
+[ext_resource type="FontFile" uid="uid://cqx1i8ikkjjc4" path="res://assets/fonts/KiwiSoda.ttf" id="2_kctjl"]
+
+[sub_resource type="GDScript" id="GDScript_r717u"]
+resource_name = "splash"
+script/source = "extends CanvasLayer
+var init_music = preload(\"res://assets/musics/Journey_Title.mp3\")
+
+func _ready():
+	BgMusic.title.play()
+	Foreground._fade_in()
+	await get_tree().create_timer(1.5).timeout
+	get_tree().create_tween().tween_property($godot_logo, \"modulate\", Color(\"FFF\"), 1.0)
+	$godot_logo.play()
+	await get_tree().create_timer(1.75).timeout
+	get_tree().create_tween().tween_property($Label_bottom, \"modulate\", Color(\"FFF\"), 1.0)
+	await get_tree().create_timer(1.5).timeout
+	get_tree().create_tween().tween_property($LucasMonsan, \"modulate\", Color(\"FFF\"), 1.0)
+	await get_tree().create_timer(1).timeout
+	Foreground._fade_out(0.5)
+	await get_tree().create_timer(0.75).timeout
+	get_tree().change_scene_to_file(\"res://scenes/menus/title.tscn\")
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8hfp"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(0, 0, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khpcc"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(180, 0, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq8rk"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(360, 0, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aguv5"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(540, 0, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn4p1"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(0, 210, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haclw"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(180, 210, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iybq7"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(360, 210, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reclf"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(540, 210, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjew6"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(0, 420, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghrc6"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(180, 420, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbixw"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(360, 420, 180, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jfo5"]
+atlas = ExtResource("1_j50lt")
+region = Rect2(540, 420, 180, 210)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cims6"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_o8hfp")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_khpcc")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_uq8rk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aguv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn4p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haclw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iybq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reclf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjew6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghrc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbixw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jfo5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="Splash" type="CanvasLayer"]
+script = SubResource("GDScript_r717u")
+
+[node name="Label_top" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 64.0
+offset_right = 112.0
+offset_bottom = 96.0
+grow_horizontal = 2
+text = "Criado na"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="godot_logo" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(96, 96)
+scale = Vector2(0.888889, 0.888889)
+sprite_frames = SubResource("SpriteFrames_cims6")
+autoplay = "default"
+frame = 11
+frame_progress = 1.0
+centered = false
+
+[node name="Label_bottom" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -160.0
+offset_right = 112.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "e craftado por"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LucasMonsan" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -128.0
+offset_right = 144.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_kctjl")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center][rainbow]Lucas Monsan"
+fit_content = true
+scroll_active = false

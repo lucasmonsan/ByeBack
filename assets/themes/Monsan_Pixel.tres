@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://chb6xan05gd1o"]
+
+[ext_resource type="FontFile" uid="uid://b6e2p274io06p" path="res://assets/fonts/Comicoro.ttf" id="1_la0e7"]
+
+[resource]
+Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("1_la0e7")
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_la0e7")

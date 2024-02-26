@@ -1,0 +1,389 @@
+[gd_scene load_steps=37 format=3 uid="uid://cji4ouhhwlbmb"]
+
+[ext_resource type="Shader" path="res://assets/shaders/h_infinity.gdshader" id="1_cc6xq"]
+[ext_resource type="Texture2D" uid="uid://3aoi4byo33xl" path="res://assets/backgrounds/night sky/0.webp" id="2_umiih"]
+[ext_resource type="Texture2D" uid="uid://dulby0b62yw5t" path="res://assets/backgrounds/night sky/1.webp" id="3_tdkvu"]
+[ext_resource type="Texture2D" uid="uid://cm06bue00lp17" path="res://assets/backgrounds/night sky/2.webp" id="4_h3do1"]
+[ext_resource type="Texture2D" uid="uid://b681ypbmh5p4e" path="res://assets/backgrounds/night sky/3.webp" id="5_tpejt"]
+[ext_resource type="Texture2D" uid="uid://cfs25ckuu7wqw" path="res://assets/backgrounds/night sky/4.webp" id="6_ajy8k"]
+[ext_resource type="Texture2D" uid="uid://cebawvq83mnu" path="res://assets/animations/falling_star.webp" id="7_ecn40"]
+[ext_resource type="FontFile" uid="uid://bra65ndlt0btk" path="res://assets/fonts/04B_30__.TTF" id="8_clu72"]
+
+[sub_resource type="GDScript" id="GDScript_jab4t"]
+resource_name = "title"
+script/source = "extends CanvasLayer
+
+func _ready():
+	Background._change(Palette.dark_sky)
+	Foreground._fade_in()
+	Save.touch = false
+	await get_tree().create_timer(1).timeout
+	get_tree().create_tween().tween_property($VBox_ui, \"modulate\", Color(\"FFF\"), 1.0).set_ease(Tween.EASE_IN_OUT)
+	$Control_sky_bg/falling_star1.play()
+	await get_tree().create_timer(1).timeout
+	Save.touch = true
+	await get_tree().create_timer(4).timeout
+	$Control_sky_bg/falling_star2.play()
+
+func _on_btn_exit_pressed(): if (Save.touch):
+	Foreground._fade_out(1.0)
+	await get_tree().create_timer(1).timeout
+	get_tree().quit()
+
+func _on_btn_start_pressed(): if (Save.touch):
+	Save.touch = false
+	BgSfx.strong_wind.volume_db = -64
+	var start = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT)
+	start.tween_property($VBox_ui, \"modulate\", Color(\"FFF0\"), 1.5)
+	start.parallel().tween_property($Control_sky_bg, \"position\", Vector2($Control_sky_bg.position.x, -420), 3).set_trans(Tween.TRANS_BACK)
+	start.parallel().tween_property(BgSfx.strong_wind, \"volume_db\", -24, 1.0)
+	BgSfx.strong_wind.play()
+	await get_tree().create_timer(3).timeout
+	get_tree().change_scene_to_file(\"res://scenes/game/external/grandpa_house.tscn\")
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_47gjj"]
+shader = ExtResource("1_cc6xq")
+shader_parameter/speed = 0.005
+shader_parameter/texture = ExtResource("2_umiih")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktp5k"]
+shader = ExtResource("1_cc6xq")
+shader_parameter/speed = 0.003
+shader_parameter/texture = ExtResource("3_tdkvu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1g2ap"]
+shader = ExtResource("1_cc6xq")
+shader_parameter/speed = 0.001
+shader_parameter/texture = ExtResource("4_h3do1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8yi2a"]
+shader = ExtResource("1_cc6xq")
+shader_parameter/speed = 0.007
+shader_parameter/texture = ExtResource("5_tpejt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwvrc"]
+shader = ExtResource("1_cc6xq")
+shader_parameter/speed = 0.009
+shader_parameter/texture = ExtResource("6_ajy8k")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5syf"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehxdg"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohsg0"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76itq"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q47wy"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n24sb"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc17t"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx13l"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u73lv"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kef4x"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0ehr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5syf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehxdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohsg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76itq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q47wy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n24sb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc17t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx13l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u73lv")
+}, {
+"duration": 512.0,
+"texture": SubResource("AtlasTexture_kef4x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62gvi"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnpb8"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qinnj"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow2vl"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbqg6"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wln5b"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p0kb"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih2mv"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyeah"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umcbl"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqst5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62gvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnpb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qinnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow2vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbqg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wln5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p0kb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih2mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyeah")
+}, {
+"duration": 512.0,
+"texture": SubResource("AtlasTexture_umcbl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Title" type="CanvasLayer"]
+script = SubResource("GDScript_jab4t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0901961, 0.0862745, 0.156863, 1)
+
+[node name="Control_sky_bg" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -384.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sky_center" type="TextureRect" parent="Control_sky_bg"]
+material = SubResource("ShaderMaterial_47gjj")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -352.0
+offset_right = 32.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_umiih")
+expand_mode = 1
+stretch_mode = 5
+flip_v = true
+
+[node name="sky_bottom" type="TextureRect" parent="Control_sky_bg"]
+material = SubResource("ShaderMaterial_ktp5k")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -224.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_tdkvu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="moon" type="TextureRect" parent="Control_sky_bg"]
+material = SubResource("ShaderMaterial_1g2ap")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -256.0
+offset_right = -176.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture = ExtResource("4_h3do1")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="clouds1" type="TextureRect" parent="Control_sky_bg"]
+material = SubResource("ShaderMaterial_8yi2a")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -192.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_tpejt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="clouds2" type="TextureRect" parent="Control_sky_bg"]
+material = SubResource("ShaderMaterial_pwvrc")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -192.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_ajy8k")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="falling_star1" type="AnimatedSprite2D" parent="Control_sky_bg"]
+modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(288, 32)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_m0ehr")
+
+[node name="falling_star2" type="AnimatedSprite2D" parent="Control_sky_bg"]
+position = Vector2(64, 96)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_pqst5")
+
+[node name="VBox_ui" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 384.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ByeBack" type="RichTextLabel" parent="VBox_ui"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_clu72")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center][wave]ByeBack"
+fit_content = true
+scroll_active = false
+
+[node name="btn_start" type="Button" parent="VBox_ui"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Começar"
+flat = true
+
+[node name="btn_settings" type="Button" parent="VBox_ui"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Configurações"
+flat = true
+
+[node name="btn_credits" type="Button" parent="VBox_ui"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Créditos"
+flat = true
+
+[node name="btn_exit" type="Button" parent="VBox_ui"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sair"
+flat = true
+
+[connection signal="pressed" from="VBox_ui/btn_start" to="." method="_on_btn_start_pressed"]
+[connection signal="pressed" from="VBox_ui/btn_exit" to="." method="_on_btn_exit_pressed"]

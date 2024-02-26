@@ -1,0 +1,131 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwvpngqogirmf"]
+
+[ext_resource type="Shader" path="res://assets/shaders/h_infinity.gdshader" id="1_b2v84"]
+[ext_resource type="Texture2D" uid="uid://k6v1s3paorr5" path="res://assets/backgrounds/grandpa/external_house1.webp" id="1_sb4fp"]
+[ext_resource type="Texture2D" uid="uid://cdyyrwkx5ar6g" path="res://assets/backgrounds/grandpa/external_house0.webp" id="2_34510"]
+[ext_resource type="Texture2D" uid="uid://kejctpuyym07" path="res://assets/backgrounds/grandpa/external_house2.webp" id="4_sbxk1"]
+[ext_resource type="Texture2D" uid="uid://cmft2b04e12xm" path="res://assets/backgrounds/grandpa/external_house3.webp" id="5_shxer"]
+[ext_resource type="Texture2D" uid="uid://bf2a5dhip4ie4" path="res://assets/backgrounds/grandpa/external_house4.webp" id="6_adwa1"]
+
+[sub_resource type="GDScript" id="GDScript_aebht"]
+resource_name = "grandpa_house"
+script/source = "extends CanvasLayer
+
+func _ready():
+	var grandpa = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	grandpa.tween_property($Control_house_bg, \"position\", Vector2($Control_house_bg.position.x,0),2.0)
+	grandpa.parallel().tween_property($Control_house_bg/sky, \"modulate\", Color(\"FFF0\"), 1.0).set_delay(1.5)
+	grandpa.parallel().tween_property(BgSfx.strong_wind, \"volume_db\", -80, 2.0)
+	grandpa.parallel().tween_property(BgMusic.title, \"volume_db\", -80, 3.0)
+	BgSfx.forest.play()
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kk8ku"]
+shader = ExtResource("1_b2v84")
+shader_parameter/speed = 0.005
+shader_parameter/texture = ExtResource("2_34510")
+
+[node name="GrandpaHouse" type="CanvasLayer"]
+script = SubResource("GDScript_aebht")
+
+[node name="Control_house_bg" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 640.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="blue" type="ColorRect" parent="Control_house_bg"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 448.0
+grow_horizontal = 2
+color = Color(0.290196, 0.552941, 0.858824, 1)
+
+[node name="green" type="ColorRect" parent="Control_house_bg"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.286275, 0.392157, 0.27451, 1)
+
+[node name="clouds" type="TextureRect" parent="Control_house_bg"]
+material = SubResource("ShaderMaterial_kk8ku")
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -96.0
+offset_right = 32.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_34510")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="grass" type="TextureRect" parent="Control_house_bg"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -352.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_sb4fp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="tree" type="TextureRect" parent="Control_house_bg"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -352.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_sbxk1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="house" type="TextureRect" parent="Control_house_bg"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -352.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_shxer")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="sky" type="TextureRect" parent="Control_house_bg"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 224.0
+grow_horizontal = 2
+texture = ExtResource("6_adwa1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

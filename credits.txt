@@ -1,0 +1,25 @@
+Color Palette - https://lospec.com/palette-list/vinik24
+
+Godot Logo - https://www.reddit.com/r/godot/comments/kne7j7/animated_godot_logo/
+
+Font
+	Kiwi Soda - https://www.dafont.com/pt/kiwisoda.font?back=bitmap
+	Comicoro - https://www.dafont.com/pt/comicoro.font?back=bitmap
+
+Sky
+	Falling Star - https://pixel-salvaje.itch.io/free-falling-star-animation
+	Free Sky Backgrounds - https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set
+	Mountain Dusk - https://ansimuz.itch.io/mountain-dusk-parallax-background
+	Moon - https://grinnch.itch.io/moon-phases
+
+Scenario
+	External
+		Free Summer - https://free-game-assets.itch.io/free-summer-pixel-art-backgrounds
+	
+	Internal
+		
+
+SFX
+	Strong Wind - https://opengameart.org/content/strong-wind-blowing
+	Nox Sound - https://nox-sound-design.itch.io/essentials-series-sfx-nox-sound
+

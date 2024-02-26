@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bra65ndlt0btk"
-path="res://.godot/imported/04B_30__.TTF-3ec01a9e34c1965b63366a1df2181f40.fontdata"
+uid="uid://b6e2p274io06p"
+path="res://.godot/imported/Comicoro.ttf-4a906a4a87b71526397d9b9262c76c03.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/04B_30__.TTF"
-dest_files=["res://.godot/imported/04B_30__.TTF-3ec01a9e34c1965b63366a1df2181f40.fontdata"]
+source_file="res://assets/fonts/Comicoro.ttf"
+dest_files=["res://.godot/imported/Comicoro.ttf-4a906a4a87b71526397d9b9262c76c03.fontdata"]
 
 [params]
 

@@ -11,34 +11,37 @@ config_version=5
 [application]
 
 config/name="ByeBack"
-run/main_scene="res://menus/Title.tscn"
+run/main_scene="res://scenes/menus/splash.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [autoload]
 
-BG="*res://global/Background.tscn"
-FG="*res://global/Foreground.tscn"
-PALETTE="*res://global/Palette.gd"
-SAVE="*res://global/Save.gd"
-FUNCTIONS="*res://global/Functions.gd"
-DEBUG="*res://global/Debug.tscn"
-BG_MUSIC="*res://global/BG_Music.tscn"
+Background="*res://scenes/globals/background.tscn"
+BgMusic="*res://scenes/globals/bg_music.tscn"
+Foreground="*res://scenes/globals/foreground.tscn"
+Palette="*res://scenes/globals/palette.gd"
+Save="*res://scenes/globals/Save.tscn"
+BgSfx="*res://scenes/globals/bg_sfx.tscn"
 
 [display]
 
-window/size/viewport_width=704
-window/size/viewport_height=1280
-window/size/window_width_override=563
-window/size/window_height_override=1024
+window/size/viewport_width=352
+window/size/viewport_height=640
+window/size/window_width_override=540
+window/size/window_height_override=960
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-tabs/plugin.cfg")
+
 [gui]
 
-theme/custom="res://assets/themes/monsan.tres"
-theme/custom_font="res://assets/fonts/LittleGuy(alt).ttf"
+theme/custom="res://assets/themes/Monsan_Pixel.tres"
 
 [input_devices]
 
@@ -46,9 +49,8 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=3
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
-textures/default_filters/use_nearest_mipmap_filter=true
 textures/decals/filter=2
 textures/light_projectors/filter=2
