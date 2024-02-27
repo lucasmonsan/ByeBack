@@ -22,4 +22,4 @@ Scenario
 SFX
 	Strong Wind - https://opengameart.org/content/strong-wind-blowing
 	Nox Sound - https://nox-sound-design.itch.io/essentials-series-sfx-nox-sound
-
+	UI Sounds - https://thowsenmedia.itch.io/ui-sounds

@@ -15,30 +15,32 @@ script/source = "extends CanvasLayer
 
 func _ready():
 	Background._change(Palette.dark_sky)
-	Foreground._fade_in()
-	Save.touch = false
-	await get_tree().create_timer(1).timeout
-	get_tree().create_tween().tween_property($VBox_ui, \"modulate\", Color(\"FFF\"), 1.0).set_ease(Tween.EASE_IN_OUT)
+	Foreground._fade_in(1.0)
+	Game.touch = false
+	await get_tree().create_timer(3).timeout
+	Game._tween($VBox_ui, \"modulate\", Color(\"FFF\"), 1.0)
 	$Control_sky_bg/falling_star1.play()
 	await get_tree().create_timer(1).timeout
-	Save.touch = true
+	Game.touch = true
 	await get_tree().create_timer(4).timeout
 	$Control_sky_bg/falling_star2.play()
 
-func _on_btn_exit_pressed(): if (Save.touch):
+func _on_btn_exit_pressed(): if (Game.touch):
 	Foreground._fade_out(1.0)
+	Game._tween(BgMusic.title, \"volume_db\", -80, 1.0)
 	await get_tree().create_timer(1).timeout
 	get_tree().quit()
 
-func _on_btn_start_pressed(): if (Save.touch):
-	Save.touch = false
-	BgSfx.strong_wind.volume_db = -64
-	var start = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT)
-	start.tween_property($VBox_ui, \"modulate\", Color(\"FFF0\"), 1.5)
-	start.parallel().tween_property($Control_sky_bg, \"position\", Vector2($Control_sky_bg.position.x, -420), 3).set_trans(Tween.TRANS_BACK)
-	start.parallel().tween_property(BgSfx.strong_wind, \"volume_db\", -24, 1.0)
+func _on_btn_start_pressed(): if (Game.touch):
+	Game.touch = false
+	Game._tween($VBox_ui, \"modulate\", Color(\"FFF0\"), 1.5)
+	Game._tween($Control_sky_bg, \"position\", Vector2($Control_sky_bg.position.x, -420), 3, \"back\")
+	Game._tween(BgSfx.strong_wind, \"volume_db\", -16, 1.0)
 	BgSfx.strong_wind.play()
-	await get_tree().create_timer(3).timeout
+	Foreground._fade_out()
+	await get_tree().create_timer(1.5).timeout
+	Game._tween(BgSfx.strong_wind, \"volume_db\", -80, 2.0)
+	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file(\"res://scenes/game/external/grandpa_house.tscn\")
 "
 
@@ -145,6 +147,10 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_umcbl"]
+atlas = ExtResource("7_ecn40")
+region = Rect2(1152, 0, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_62gvi"]
 atlas = ExtResource("7_ecn40")
 region = Rect2(0, 0, 128, 128)
@@ -181,13 +187,12 @@ region = Rect2(896, 0, 128, 128)
 atlas = ExtResource("7_ecn40")
 region = Rect2(1024, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_umcbl"]
-atlas = ExtResource("7_ecn40")
-region = Rect2(1152, 0, 128, 128)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_pqst5"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umcbl")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_62gvi")
 }, {

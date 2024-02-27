@@ -12,12 +12,35 @@ resource_name = "grandpa_house"
 script/source = "extends CanvasLayer
 
 func _ready():
-	var grandpa = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
-	grandpa.tween_property($Control_house_bg, \"position\", Vector2($Control_house_bg.position.x,0),2.0)
-	grandpa.parallel().tween_property($Control_house_bg/sky, \"modulate\", Color(\"FFF0\"), 1.0).set_delay(1.5)
-	grandpa.parallel().tween_property(BgSfx.strong_wind, \"volume_db\", -80, 2.0)
-	grandpa.parallel().tween_property(BgMusic.title, \"volume_db\", -80, 3.0)
-	BgSfx.forest.play()
+	Background._change(Palette.dark_sky)
+	Foreground._fade_in()
+	await get_tree().create_timer(1).timeout
+	Game.step = 1
+
+func _process(_delta):
+	if (Game.day == 1):
+		if (Game.step == 1):
+			Game._step_once()
+			Game._tween(BgMusic.title, \"volume_db\", -80, 3)
+			await get_tree().create_timer(1).timeout
+			Story._dialog(\"Ô Flô.... Ocê já descobriu por quê só tem estrela no céu de noite?\")
+		elif (Game.step == 2):
+			Choices._normal(\"...\", \"Descobri sim, vô!\")
+		elif (Game.step == 3):
+			if (Game.choice == \"...\"): Story._dialog(\"[center]Ocê num tá pra prosa hoje, né...\")
+			elif (Game.choice == \"Descobri sim, vô!\"): Story._dialog(\"[center]Ainda bem que ocê voltô pra me contá então!\")
+		elif (Game.step == 4):
+			Game._step_once()
+			BgMusic.grandpa_01.play()
+			Game._tween($Control_house_bg, \"position\", Vector2($Control_house_bg.position.x,0),4, \"quad\")
+			await get_tree().create_timer(3.5).timeout
+			Game._tween($Control_house_bg/sky, \"modulate\", Color(\"FFF0\"), 1, \"quad\")
+			BgSfx.forest.play()
+			await get_tree().create_timer(2).timeout
+			Game._next_step()
+		elif (Game.step == 5):
+			Story._dialog(\"Parece que deu certo esse trem aqui, sô!. Deu foi bão demais.\", \"grandpa\")
+			pass
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kk8ku"]
@@ -33,8 +56,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 640.0
-offset_bottom = 640.0
+offset_top = 704.0
+offset_bottom = 704.0
 grow_horizontal = 2
 grow_vertical = 2
 

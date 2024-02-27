@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://x62gwd2v8yga"]
+
+[sub_resource type="GDScript" id="GDScript_pb56q"]
+resource_name = "debug"
+script/source = "extends CanvasLayer
+
+func _process(_delta):
+	if (Input.is_key_pressed(KEY_ESCAPE)): get_tree().quit()
+	$Label.text = str(Engine.get_frames_per_second()) + \"fps\" + \" |  Step: \" + str(Game.step) + \" | Choice: \" + str(Game.choice)
+"
+
+[node name="Debug" type="CanvasLayer"]
+layer = 6
+script = SubResource("GDScript_pb56q")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_font_sizes/font_size = 24
+text = "lUCAS m<ONSAN"
+horizontal_alignment = 1
+vertical_alignment = 2

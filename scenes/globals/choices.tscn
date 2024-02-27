@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://d250ga5rkpf7y"]
+
+[ext_resource type="AudioStream" uid="uid://b0fdggfmptrjy" path="res://assets/sfx/ui/click01.mp3" id="1_g0ft4"]
+[ext_resource type="AudioStream" uid="uid://dbxuwwcsa7kih" path="res://assets/sfx/ui/ALERT_Error.mp3" id="2_h1imm"]
+
+[sub_resource type="GDScript" id="GDScript_w28xn"]
+resource_name = "choices"
+script/source = "extends CanvasLayer
+
+func _ready(): 
+	visible = false
+	$VBox.modulate = Color(\"FFF0\")
+
+func _normal(aux_option1, aux_option2=\"\", aux_option3=\"\", aux_option4=\"\"):
+	Game._step_once()
+	Game.touch = false
+	
+	$VBox.modulate = Color(\"FFF0\")
+	$VBox.position.y += 64
+	
+	$VBox/btn01.text = aux_option1
+	$VBox/btn02.text = aux_option2
+	$VBox/btn03.text = aux_option3 
+	$VBox/btn04.text = aux_option4
+	
+	$VBox/btn02.visible = (aux_option2 != \"\")
+	$VBox/btn03.visible = (aux_option3 != \"\")
+	$VBox/btn04.visible = (aux_option4 != \"\")
+	
+	visible = true
+	Game._tween($VBox, \"position\", Vector2($VBox.position.x, ($VBox.position.y - 64)), 0.5, \"quad\")
+	Game._tween($VBox, \"modulate\", Color(\"FFF\"), 0.5)
+	Game.touch = true
+
+func _on_btn_01_pressed(): if (Game.touch):
+	$click_normal.play()
+	_after_click($VBox/btn01.text)
+func _on_btn_02_pressed(): if (Game.touch):
+	$click_normal.play()
+	_after_click($VBox/btn02.text)
+func _on_btn_03_pressed(): if (Game.touch):
+	$click_normal.play()
+	_after_click($VBox/btn03.text)
+func _on_btn_04_pressed(): if (Game.touch):
+	$click_ignore.play()
+	_after_click($VBox/btn04.text)
+
+func _after_click(aux_choiced):
+	Game._step_once()
+	Game.touch = false
+	Game.choice = aux_choiced
+	Game._tween($VBox, \"position\", Vector2($VBox.position.x, ($VBox.position.y + 64)), 0.5)
+	Game._tween($VBox, \"modulate\", Color(\"FFF0\"), 0.5)
+	await get_tree().create_timer(0.5).timeout
+	visible = false
+	Game._next_step()
+"
+
+[node name="Choices" type="CanvasLayer"]
+layer = 3
+script = SubResource("GDScript_w28xn")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -96.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="btn01" type="Button" parent="VBox"]
+layout_mode = 2
+flat = true
+
+[node name="btn02" type="Button" parent="VBox"]
+layout_mode = 2
+flat = true
+
+[node name="btn03" type="Button" parent="VBox"]
+layout_mode = 2
+flat = true
+
+[node name="btn04" type="Button" parent="VBox"]
+layout_mode = 2
+flat = true
+
+[node name="click_normal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_g0ft4")
+
+[node name="click_ignore" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_h1imm")
+
+[connection signal="pressed" from="VBox/btn01" to="." method="_on_btn_01_pressed"]
+[connection signal="pressed" from="VBox/btn02" to="." method="_on_btn_02_pressed"]
+[connection signal="pressed" from="VBox/btn03" to="." method="_on_btn_03_pressed"]
+[connection signal="pressed" from="VBox/btn04" to="." method="_on_btn_04_pressed"]

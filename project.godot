@@ -22,8 +22,11 @@ Background="*res://scenes/globals/background.tscn"
 BgMusic="*res://scenes/globals/bg_music.tscn"
 Foreground="*res://scenes/globals/foreground.tscn"
 Palette="*res://scenes/globals/palette.gd"
-Save="*res://scenes/globals/Save.tscn"
 BgSfx="*res://scenes/globals/bg_sfx.tscn"
+Game="*res://scenes/globals/game.tscn"
+Story="*res://scenes/globals/story.tscn"
+Choices="*res://scenes/globals/choices.tscn"
+Debug="*res://scenes/globals/debug.tscn"
 
 [display]
 

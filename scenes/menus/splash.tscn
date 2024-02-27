@@ -12,15 +12,15 @@ func _ready():
 	BgMusic.title.play()
 	Foreground._fade_in()
 	await get_tree().create_timer(1.5).timeout
-	get_tree().create_tween().tween_property($godot_logo, \"modulate\", Color(\"FFF\"), 1.0)
+	Game._tween($godot_logo, \"modulate\", Color(\"FFF\"), 1.0)
 	$godot_logo.play()
 	await get_tree().create_timer(1.75).timeout
-	get_tree().create_tween().tween_property($Label_bottom, \"modulate\", Color(\"FFF\"), 1.0)
+	Game._tween($Label_bottom, \"modulate\", Color(\"FFF\"), 1.0)
 	await get_tree().create_timer(1.5).timeout
-	get_tree().create_tween().tween_property($LucasMonsan, \"modulate\", Color(\"FFF\"), 1.0)
+	Game._tween($LucasMonsan, \"modulate\", Color(\"FFF\"), 1.0)
 	await get_tree().create_timer(1).timeout
 	Foreground._fade_out(0.5)
-	await get_tree().create_timer(0.75).timeout
+	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file(\"res://scenes/menus/title.tscn\")
 "
 

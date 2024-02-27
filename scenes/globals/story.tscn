@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbdkv8jm6pk3"]
+
+[ext_resource type="Texture2D" uid="uid://b5xqjk1y3oarw" path="res://assets/characters/grandpa/idle.webp" id="1_ac3o8"]
+[ext_resource type="Texture2D" uid="uid://bmxh1bncnk3ww" path="res://assets/characters/grandpa/talk.webp" id="2_5p1i0"]
+
+[sub_resource type="GDScript" id="GDScript_pj7so"]
+resource_name = "story"
+script/source = "extends CanvasLayer
+
+@onready var grandpa = $grandpa
+
+func _ready(): 
+	visible = false
+	for child in get_children(): if (child is AnimatedSprite2D): child.modulate = Color(\"FFF0\")
+
+func _dialog(text = \"\", npc = \"\", animation = \"default\"):
+	Game._step_once()
+	
+	if (visible):
+		Game._tween($RichText, \"modulate\", Color(\"FFF0\"), 0.25)
+		await get_tree().create_timer(0.5).timeout
+	
+	var text_array = text.split(\". \")
+	var array_count = 0
+	visible = true
+	
+	if (npc != \"\"):
+		Game._tween(get_node(npc), \"modulate\", Color(\"FFF\"), 0.5)
+		get_node(npc).play(animation)
+	
+	$RichText.text = \"[center]\" + text_array[array_count]
+	$RichText.visible_characters = 0
+	$RichText.visible_ratio = 0	
+	Game._tween($RichText, \"modulate\", Color(\"FFF\"), 0.5)
+	
+	while (array_count < text_array.size()):
+		while $RichText.visible_characters < ($RichText.text.length() - _extract_bbcode_tags($RichText.text)):
+			$RichText.visible_characters += 1
+			await get_tree().create_timer(Game.text_speed).timeout
+		
+		if (array_count < text_array.size() -1):
+			await (get_tree().create_timer(Game.text_speed * 5).timeout)
+			array_count += 1
+			$RichText.text += \" \" + text_array[array_count]
+		else: break
+	
+	if (npc != \"\"): get_node(npc).stop()
+	Game._next_step()
+
+func _extract_bbcode_tags(aux_string):
+	var tags = \"\"
+	var inside = false
+	
+	for character in aux_string:
+		if (character == \"[\"): inside = true
+		if (inside): tags += character
+		if (character == \"]\"): inside = false
+	return tags.length()
+
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_33dva"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ac3o8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5p1i0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Story" type="CanvasLayer"]
+layer = 2
+script = SubResource("GDScript_pj7so")
+
+[node name="RichText" type="RichTextLabel" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 256.0
+grow_horizontal = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="grandpa" type="AnimatedSprite2D" parent="."]
+position = Vector2(32, 288)
+scale = Vector2(1.54011, 1.54011)
+sprite_frames = SubResource("SpriteFrames_33dva")
+centered = false

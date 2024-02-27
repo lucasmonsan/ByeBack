@@ -12,10 +12,8 @@ script/source = "extends Node
 
 
 func _process(_delta):
-	if (strong_wind.volume_db == -80 and strong_wind.playing): 
-		strong_wind.stop()
-		print(\"strong wind stop\")
-	elif (forest.volume_db == -80 and forest.playing): forest.stop()
+	if (strong_wind.volume_db == -80 and strong_wind.playing): strong_wind.stop()
+	if (forest.volume_db == -80 and forest.playing): forest.stop()
 "
 
 [node name="BgSFX" type="Node"]
