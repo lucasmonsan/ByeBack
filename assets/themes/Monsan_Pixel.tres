@@ -1,11 +1,77 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://chb6xan05gd1o"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://chb6xan05gd1o"]
 
 [ext_resource type="FontFile" uid="uid://b6e2p274io06p" path="res://assets/fonts/Comicoro.ttf" id="1_la0e7"]
+[ext_resource type="FontFile" uid="uid://ca054v8gqxq0o" path="res://assets/fonts/Cloude_Regular_Bold_1.02.otf" id="1_xg2aj"]
+[ext_resource type="Texture2D" uid="uid://dh8m0ce5hjrx0" path="res://assets/ui/button0.webp" id="2_jufew"]
+[ext_resource type="Texture2D" uid="uid://cqdw8ej2etgff" path="res://assets/ui/talk_baloon.webp" id="2_v0cd3"]
+[ext_resource type="Texture2D" uid="uid://lnpurlq2xk0n" path="res://assets/ui/button1.webp" id="3_feywx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l0vu1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8abro"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_jufew")
+texture_margin_left = 14.7157
+texture_margin_top = 12.7536
+texture_margin_right = 14.7157
+texture_margin_bottom = 22.0736
+region_rect = Rect2(0, 0, 52, 58)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4qnca"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_jufew")
+texture_margin_left = 14.7157
+texture_margin_top = 12.7536
+texture_margin_right = 14.7157
+texture_margin_bottom = 22.0736
+region_rect = Rect2(0, 0, 52, 58)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uqhmd"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("3_feywx")
+texture_margin_left = 14.7157
+texture_margin_top = 14.2252
+texture_margin_right = 14.7157
+texture_margin_bottom = 14.5522
+region_rect = Rect2(0, 0, 52, 52)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hc86x"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 17.0
+content_margin_bottom = 40.0
+texture = ExtResource("2_v0cd3")
+texture_margin_left = 14.5839
+texture_margin_top = 14.2589
+texture_margin_right = 99.3474
+texture_margin_bottom = 39.5336
+region_rect = Rect2(0, 0, 248, 156)
 
 [resource]
-Button/font_sizes/font_size = 48
-Button/fonts/font = ExtResource("1_la0e7")
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_xg2aj")
+Button/styles/focus = SubResource("StyleBoxEmpty_l0vu1")
+Button/styles/hover = SubResource("StyleBoxTexture_8abro")
+Button/styles/normal = SubResource("StyleBoxTexture_4qnca")
+Button/styles/pressed = SubResource("StyleBoxTexture_uqhmd")
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_la0e7")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 RichTextLabel/font_sizes/normal_font_size = 32
 RichTextLabel/fonts/normal_font = ExtResource("1_la0e7")
+Talk_Ballon/base_type = &"PanelContainer"
+Talk_Ballon/styles/panel = SubResource("StyleBoxTexture_hc86x")

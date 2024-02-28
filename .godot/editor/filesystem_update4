@@ -1,8 +1,6 @@
-res://scenes/globals/story.tscn
 res://scenes/globals/game.tscn
+res://assets/themes/Monsan_Pixel.tres
+res://assets/shaders/wave.gdshader
 res://scenes/game/external/grandpa_house.tscn
 res://scenes/globals/choices.tscn
-res://credits.txt
 res://scenes/globals/debug.tscn
-res://scenes/globals/bg_music.tscn
-res://scenes/globals/bg_sfx.tscn

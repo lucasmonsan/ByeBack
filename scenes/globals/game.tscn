@@ -10,8 +10,6 @@ var choice = \"\"
 var touch = false
 var actions_list : Array = []
 
-var text_speed = 0.05
-
 func _actions_list(option, value, newValue = \"\"):
 	if option == \"get\":
 		return actions_list.find(value) != -1

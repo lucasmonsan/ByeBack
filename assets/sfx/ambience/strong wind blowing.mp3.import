@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://baqoephnka2g4"
+path="res://.godot/imported/strong wind blowing.mp3-ca6795df2a53c779c253ad22c05834a2.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/ambience/strong wind blowing.mp3"
+dest_files=["res://.godot/imported/strong wind blowing.mp3-ca6795df2a53c779c253ad22c05834a2.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

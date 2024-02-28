@@ -3,23 +3,34 @@ Color Palette - https://lospec.com/palette-list/vinik24
 Godot Logo - https://www.reddit.com/r/godot/comments/kne7j7/animated_godot_logo/
 
 Font
-	Kiwi Soda - https://www.dafont.com/pt/kiwisoda.font?back=bitmap
-	Comicoro - https://www.dafont.com/pt/comicoro.font?back=bitmap
+	https://www.dafont.com/pt/kiwisoda.font?back=bitmap
+	https://www.dafont.com/pt/comicoro.font?back=bitmap
+	https://www.dafont.com/pt/cloude.font?a=on&af=on&l[]=10&l[]=1
 
 Sky
-	Falling Star - https://pixel-salvaje.itch.io/free-falling-star-animation
-	Free Sky Backgrounds - https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set
-	Mountain Dusk - https://ansimuz.itch.io/mountain-dusk-parallax-background
-	Moon - https://grinnch.itch.io/moon-phases
+	https://pixel-salvaje.itch.io/free-falling-star-animation
+	https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set
+	https://ansimuz.itch.io/mountain-dusk-parallax-background
+	https://grinnch.itch.io/moon-phases
 
 Scenario
 	External
-		Free Summer - https://free-game-assets.itch.io/free-summer-pixel-art-backgrounds
+		https://free-game-assets.itch.io/free-summer-pixel-art-backgrounds
 	
 	Internal
-		
 
 SFX
-	Strong Wind - https://opengameart.org/content/strong-wind-blowing
-	Nox Sound - https://nox-sound-design.itch.io/essentials-series-sfx-nox-sound
-	UI Sounds - https://thowsenmedia.itch.io/ui-sounds
+	https://opengameart.org/content/strong-wind-blowing
+	https://nox-sound-design.itch.io/essentials-series-sfx-nox-sound
+	https://thowsenmedia.itch.io/ui-sounds
+
+Dialog SFX
+	https://www.youtube.com/watch?v=ZXzi-gdYUrs
+	https://www.youtube.com/watch?v=yKQTZLJP9OA
+	https://www.youtube.com/watch?v=ljiOcfSsvgQ
+	https://opengameart.org/content/dialog-vocal-samples
+	https://opengameart.org/content/talking-synthesizer
+
+UI
+	https://justajoke.itch.io/pixel-speech-balloon
+	https://henrysoftware.itch.io/pixel-interface

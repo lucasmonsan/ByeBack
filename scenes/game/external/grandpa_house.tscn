@@ -23,24 +23,41 @@ func _process(_delta):
 			Game._step_once()
 			Game._tween(BgMusic.title, \"volume_db\", -80, 3)
 			await get_tree().create_timer(1).timeout
-			Story._dialog(\"Ô Flô.... Ocê já descobriu por quê só tem estrela no céu de noite?\")
+			Story._dialog(\"Me conta.... Ocê já descobriu por quê só tem estrela no céu de noite?\")
 		elif (Game.step == 2):
 			Choices._normal(\"...\", \"Descobri sim, vô!\")
 		elif (Game.step == 3):
-			if (Game.choice == \"...\"): Story._dialog(\"[center]Ocê num tá pra prosa hoje, né...\")
-			elif (Game.choice == \"Descobri sim, vô!\"): Story._dialog(\"[center]Ainda bem que ocê voltô pra me contá então!\")
+			if (Game.choice == \"...\"): Story._dialog(\"Ocê num tá pra prosa hoje, né.\")
+			elif (Game.choice == \"Descobri sim, vô!\"): Story._dialog(\"Ainda bem que ocê voltô pra me contá então!\")
 		elif (Game.step == 4):
+			Choices._full_page()
+		elif (Game.step == 5):
 			Game._step_once()
+			await get_tree().create_timer(1).timeout
+			Story._end(1)
 			BgMusic.grandpa_01.play()
 			Game._tween($Control_house_bg, \"position\", Vector2($Control_house_bg.position.x,0),4, \"quad\")
 			await get_tree().create_timer(3.5).timeout
 			Game._tween($Control_house_bg/sky, \"modulate\", Color(\"FFF0\"), 1, \"quad\")
 			BgSfx.forest.play()
-			await get_tree().create_timer(2).timeout
+			await get_tree().create_timer(4).timeout
 			Game._next_step()
-		elif (Game.step == 5):
-			Story._dialog(\"Parece que deu certo esse trem aqui, sô!. Deu foi bão demais.\", \"grandpa\")
-			pass
+		elif (Game.step == 6):
+			if (Game.choice == \"...\"):
+				Story._dialog(\"Desculpa o vô pela piada.. Só queria aliviar o clima um pouquinho.\", \"grandpa\", \"sad\")
+			elif (Game.choice == \"Descobri sim, vô!\"):
+				Story._dialog(\"Aposto que não é o que ocê achava que era antigamente.\", \"grandpa\")
+		elif (Game.step == 7):
+			if (Game.choice == \"...\"): Choices._normal(\"...\", \"Tudo bem. Eu que tô\\nirritante hoje.\")
+			elif (Game.choice == \"Descobri sim, vô!\"): Choices._normal(\"Sim, era outra coisa mesmo.\", \"Eu era uma criança ingênua!\")
+		elif (Game.step == 8):
+			if (Game.choice == \"...\") or (Game.choice == \"Sim, era outra coisa mesmo.\"):
+				Story.text_speed = 0.1
+				Story._dialog(\".. .. .. \", \"grandpa\", \"sad\")
+			elif (Game.choice == \"Tudo bem. Eu que tô irritante hoje.\"):
+				Story._dialog(\"Tem problema não.. Imagino o furdunço que deve tá a sua cabecinha.\", \"grandpa\")
+			elif (Game.choice == \"Eu era uma criança ingênua!\"):
+				Story._dialog(\"Lembro do cê falando que era as pessoa do céu iluminando pros astronautas não ficá perdido.\", \"grandpa\", \"happy\")
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kk8ku"]
