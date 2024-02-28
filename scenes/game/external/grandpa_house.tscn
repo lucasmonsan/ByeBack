@@ -55,7 +55,20 @@ func _process(_delta):
 			elif (Game.choice == \"Descobri sim, vô!\"): Choices._normal(\"Sim, era outra coisa mesmo.\", \"Eu era uma criança ingênua!\")
 		elif (Game.step == 8):
 			if (Game.choice == \"...\") or (Game.choice == \"Sim, era outra coisa mesmo.\"):
-				Story.text_speed = 0.1
+				Story.text_speed = 0.25
+				Story.animation = \"sad_idle\"
+				Story._dialog(\".. .. .. \")
+			elif (Game.choice == \"Tudo bem. Eu que tô irritante hoje.\"):
+				Story.animation = \"normal_idle\"
+				Story._dialog(\"Tem problema não.. Imagino o furdunço que deve tá a sua cabecinha.\")
+			elif (Game.choice == \"Eu era uma criança ingênua!\"):
+				Story.animation = \"happy_talk\"
+				Story._dialog(\"Lembro do cê falando que era as pessoa do céu iluminando pros astronautas não ficá perdido.\")
+		elif (Game.step == 9):
+			Choices._full_page()
+		elif (Game.step == 10):
+			if (Game.choice == \"...\") or (Game.choice == \"Sim, era outra coisa mesmo.\"):
+				Story.text_speed = 0.25
 				Story.animation = \"sad_idle\"
 				Story._dialog(\".. .. .. \")
 			elif (Game.choice == \"Tudo bem. Eu que tô irritante hoje.\"):
