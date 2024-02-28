@@ -35,6 +35,7 @@ func _dialog(text = \"\"):
 	var array_count = 0
 	visible = true
 	
+	_npc_name()
 	var current_npc = \"Center_characters/\" + npc
 	Game._tween($Center_characters, \"modulate\", Color(\"FFF\"), 0.5)
 	
@@ -46,7 +47,8 @@ func _dialog(text = \"\"):
 	rich_text.visible_ratio = 0
 	
 	Game._tween($Panel, \"modulate\", Color(\"FFF\"), 0.5)
-	Game._tween(rich_text, \"modulate\", Color(\"FFF\"), 0.25)
+	Game._tween(rich_text, \"modulate\", Color(\"FFF\"), 0.5)
+	Game._tween($Label_name, \"modulate\", Color(\"FFF\"), 0.5)
 	
 	while (array_count < text_array.size()):
 		while rich_text.visible_characters < (rich_text.text.length() - _extract_bbcode_tags(rich_text.text)):
@@ -73,7 +75,11 @@ func _extract_bbcode_tags(aux_string):
 		if (character == \"]\"): inside = false
 	return tags.length()
 
-func _end(speed = 0.5): 
+func _npc_name():
+	if (npc == \"grandpa\"): $Label_name.text = \"Vô\"
+
+func _end(speed = 0.5):
+	Game._tween($Label_name, \"modulate\", Color(\"FFF0\"), speed)
 	Game._tween($Panel, \"modulate\", Color(\"FFF0\"), speed)
 	Game._tween($Center_characters, \"modulate\", Color(\"FFF0\"), speed)
 	await get_tree().create_timer(speed).timeout
@@ -174,6 +180,18 @@ animations = [{
 [node name="Story" type="CanvasLayer"]
 layer = 2
 script = SubResource("GDScript_pj7so")
+
+[node name="Label_name" type="Label" parent="."]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 64.0
+grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel" type="PanelContainer" parent="."]
 anchors_preset = 12

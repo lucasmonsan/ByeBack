@@ -36,8 +36,6 @@ gdscript/warnings/empty_file=0
 
 window/size/viewport_width=352
 window/size/viewport_height=640
-window/size/window_width_override=540
-window/size/window_height_override=960
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"

@@ -348,13 +348,12 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_pqst5")
 
 [node name="VBox_ui" type="VBoxContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 384.0
+offset_top = 32.0
+offset_bottom = 640.0
 grow_horizontal = 2
-theme_override_constants/separation = 0
-alignment = 1
+theme_override_constants/separation = 16
 
 [node name="ByeBack" type="RichTextLabel" parent="VBox_ui"]
 custom_minimum_size = Vector2(0, 64)
@@ -370,30 +369,30 @@ scroll_active = false
 [node name="btn_start" type="Button" parent="VBox_ui"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Começar"
-flat = true
 
 [node name="btn_settings" type="Button" parent="VBox_ui"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Configurações"
-flat = true
 
 [node name="btn_credits" type="Button" parent="VBox_ui"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Créditos"
-flat = true
 
 [node name="btn_exit" type="Button" parent="VBox_ui"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "Sair"
-flat = true
 
 [connection signal="pressed" from="VBox_ui/btn_start" to="." method="_on_btn_start_pressed"]
 [connection signal="pressed" from="VBox_ui/btn_exit" to="." method="_on_btn_exit_pressed"]
