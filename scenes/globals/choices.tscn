@@ -61,6 +61,7 @@ func _after_click(aux_choiced):
 	Game._next_step()
 
 func _full_page():
+	Game._step_once()
 	$Color.modulate = Color(\"FFF0\")
 	$VBox.modulate = Color(\"FFF0\")
 	$btn_full_page.modulate = Color(\"FFF0\")
@@ -72,8 +73,8 @@ func _full_page():
 func _on_btn_full_page_pressed(): if (Game.touch):
 	Game.touch = false
 	$click_normal.play()
-	Game._tween($btn_full_page, \"modulate\", Color(\"FFF0\"), 1)
-	await get_tree().create_timer(1).timeout
+	Game._tween($btn_full_page, \"modulate\", Color(\"FFF0\"), 0.5)
+	await get_tree().create_timer(0.5).timeout
 	$btn_full_page.visible = false
 	Game._next_step()
 "
@@ -146,21 +147,29 @@ alignment = 2
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+text = "Option 1
+Second Line"
 
 [node name="btn02" type="Button" parent="VBox"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+text = "Option 1
+Second Line"
 
 [node name="btn03" type="Button" parent="VBox"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+text = "Option 1
+Second Line"
 
 [node name="btn04" type="Button" parent="VBox"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+text = "Option 1
+Second Line"
 
 [node name="click_normal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_g0ft4")
@@ -169,6 +178,7 @@ stream = ExtResource("1_g0ft4")
 stream = ExtResource("2_h1imm")
 
 [node name="btn_full_page" type="Button" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

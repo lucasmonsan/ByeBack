@@ -11,17 +11,15 @@ func _process(_delta):
 
 [node name="Debug" type="CanvasLayer"]
 layer = 6
-visible = false
 script = SubResource("GDScript_pb56q")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 23.0
+offset_bottom = 32.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 40
 theme_override_font_sizes/font_size = 24
-text = "lUCAS m<ONSAN"
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1

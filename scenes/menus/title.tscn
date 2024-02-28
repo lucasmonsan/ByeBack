@@ -370,24 +370,28 @@ scroll_active = false
 [node name="btn_start" type="Button" parent="VBox_ui"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Começar"
 flat = true
 
 [node name="btn_settings" type="Button" parent="VBox_ui"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Configurações"
 flat = true
 
 [node name="btn_credits" type="Button" parent="VBox_ui"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Créditos"
 flat = true
 
 [node name="btn_exit" type="Button" parent="VBox_ui"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Sair"
 flat = true
 

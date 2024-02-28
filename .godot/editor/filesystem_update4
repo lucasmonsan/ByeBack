@@ -3,4 +3,5 @@ res://assets/themes/Monsan_Pixel.tres
 res://assets/shaders/wave.gdshader
 res://scenes/game/external/grandpa_house.tscn
 res://scenes/globals/choices.tscn
-res://scenes/globals/debug.tscn
+res://scenes/globals/story.tscn
+res://scenes/menus/title.tscn

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://kbkjjycq2pij"]
 
-[ext_resource type="AudioStream" uid="uid://baqoephnka2g4" path="res://assets/sfx/strong wind blowing.mp3" id="1_qnpxm"]
-[ext_resource type="AudioStream" uid="uid://cqg7cymh1eyjp" path="res://assets/sfx/forest.mp3" id="2_nle8t"]
+[ext_resource type="AudioStream" uid="uid://baqoephnka2g4" path="res://assets/sfx/ambience/strong wind blowing.mp3" id="1_qnpxm"]
+[ext_resource type="AudioStream" uid="uid://cqg7cymh1eyjp" path="res://assets/sfx/ambience/forest.mp3" id="2_nle8t"]
 
 [sub_resource type="GDScript" id="GDScript_grv6x"]
 resource_name = "bg_sfx"

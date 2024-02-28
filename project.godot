@@ -28,6 +28,10 @@ Story="*res://scenes/globals/story.tscn"
 Choices="*res://scenes/globals/choices.tscn"
 Debug="*res://scenes/globals/debug.tscn"
 
+[debug]
+
+gdscript/warnings/empty_file=0
+
 [display]
 
 window/size/viewport_width=352
@@ -36,6 +40,7 @@ window/size/window_width_override=540
 window/size/window_height_override=960
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 window/handheld/orientation=1
 
 [editor_plugins]

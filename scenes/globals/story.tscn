@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dbdkv8jm6pk3"]
+[gd_scene load_steps=17 format=3 uid="uid://dbdkv8jm6pk3"]
 
 [ext_resource type="Texture2D" uid="uid://fupemohhkbqo" path="res://assets/characters/grandpa/grandpa_happy0.svg" id="1_qwxrj"]
 [ext_resource type="Shader" path="res://assets/shaders/wave.gdshader" id="2_0wlry"]
+[ext_resource type="Texture2D" uid="uid://hkjeyjbrmraa" path="res://assets/characters/empty.webp" id="2_egdgl"]
 [ext_resource type="Texture2D" uid="uid://bhkgp6uuqfayh" path="res://assets/characters/grandpa/grandpa_happy1.svg" id="2_qwaoy"]
 [ext_resource type="Texture2D" uid="uid://b3r0hlo6cy1v" path="res://assets/characters/grandpa/grandpa_happy2.svg" id="3_18bix"]
 [ext_resource type="Texture2D" uid="uid://c7keah4depefa" path="res://assets/characters/grandpa/grandpa_idle0.svg" id="4_0nm06"]
@@ -15,50 +16,51 @@
 [sub_resource type="GDScript" id="GDScript_pj7so"]
 resource_name = "story"
 script/source = "extends CanvasLayer
+var npc = \"\"
+var animation = \"empty\"
 var text_speed = 0.05
 
-@onready var grandpa = $grandpa
+@onready var rich_text = $Panel/RichText
+@onready var grandpa = $Center_characters/grandpa
 
 func _ready(): 
 	visible = false
 	for child in get_children(): child.modulate = Color(\"FFF0\")
 
-func _dialog(text = \"\", npc = \"\", animation = \"idle\"):
+func _dialog(text = \"\"):
 	Game._step_once()
-	Game._tween($Panel/RichText, \"modulate\", Color(\"FFF0\"), 0.25)
-	await get_tree().create_timer(0.5).timeout	
+	Game._tween(rich_text, \"modulate\", Color(\"FFF0\"), 0.25)
+	await get_tree().create_timer(0.5).timeout
 	var text_array = text.split(\". \")
 	var array_count = 0
 	visible = true
 	
-	if (npc != \"\"):
-		Game._tween(get_node(npc), \"modulate\", Color(\"FFF\"), 0.5)
-		get_node(npc).play(animation)
+	var current_npc = \"Center_characters/\" + npc
+	Game._tween($Center_characters, \"modulate\", Color(\"FFF\"), 0.5)
 	
-	$Panel/Audio_idle.play()
+	if (animation != \"empty\"):
+		get_node(current_npc).play(animation)
 	
-	$Panel/RichText.text = \"[center]\" + text_array[array_count]
-	$Panel/RichText.visible_characters = 0
-	$Panel/RichText.visible_ratio = 0
+	rich_text.text = \"[center]\" + text_array[array_count]
+	rich_text.visible_characters = 0
+	rich_text.visible_ratio = 0
 	
 	Game._tween($Panel, \"modulate\", Color(\"FFF\"), 0.5)
-	Game._tween($Panel/RichText, \"modulate\", Color(\"FFF\"), 0.25)
+	Game._tween(rich_text, \"modulate\", Color(\"FFF\"), 0.25)
 	
 	while (array_count < text_array.size()):
-		$Panel/Audio_idle.play()
-		while $Panel/RichText.visible_characters < ($Panel/RichText.text.length() - _extract_bbcode_tags($Panel/RichText.text)):
-			$Panel/RichText.visible_characters += 1
+		while rich_text.visible_characters < (rich_text.text.length() - _extract_bbcode_tags(rich_text.text)):
+			if (rich_text.visible_characters % 2 == 1): get_node(str(current_npc + \"/Audio\")).play()
+			rich_text.visible_characters += 1
 			await get_tree().create_timer(text_speed).timeout
 		
 		if (array_count < text_array.size() -1):
-			$Panel/Audio_idle.stop()
 			await (get_tree().create_timer(text_speed * 5).timeout)
 			array_count += 1
-			$Panel/RichText.text += \" \" + text_array[array_count]
+			rich_text.text += \" \" + text_array[array_count]
 		else: break
 	
-	if (npc != \"\"): get_node(npc).stop()
-	$Panel/Audio_idle.stop()
+	if (npc != \"\"): get_node(current_npc).stop()
 	Game._next_step()
 
 func _extract_bbcode_tags(aux_string):
@@ -73,6 +75,7 @@ func _extract_bbcode_tags(aux_string):
 
 func _end(speed = 0.5): 
 	Game._tween($Panel, \"modulate\", Color(\"FFF0\"), speed)
+	Game._tween($Center_characters, \"modulate\", Color(\"FFF0\"), speed)
 	await get_tree().create_timer(speed).timeout
 	visible = false
 "
@@ -95,6 +98,22 @@ shader_parameter/intensity = 4.0
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_egdgl")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qwxrj")
+}],
+"loop": false,
+"name": &"happy_idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_qwxrj")
 }, {
 "duration": 1.0,
@@ -104,8 +123,16 @@ animations = [{
 "texture": ExtResource("3_18bix")
 }],
 "loop": true,
-"name": &"happy",
-"speed": 5.0
+"name": &"happy_talk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0nm06")
+}],
+"loop": false,
+"name": &"normal_idle",
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -118,8 +145,16 @@ animations = [{
 "texture": ExtResource("6_1owr1")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"normal_talk",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_sn2r0")
+}],
+"loop": false,
+"name": &"sad_idle",
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -132,8 +167,8 @@ animations = [{
 "texture": ExtResource("9_58xeg")
 }],
 "loop": true,
-"name": &"sad",
-"speed": 5.0
+"name": &"sad_talk",
+"speed": 8.0
 }]
 
 [node name="Story" type="CanvasLayer"]
@@ -162,13 +197,22 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 
-[node name="Audio_idle" type="AudioStreamPlayer" parent="Panel"]
-stream = ExtResource("10_d6x8y")
+[node name="Center_characters" type="CenterContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -352.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="grandpa" type="AnimatedSprite2D" parent="."]
+[node name="grandpa" type="AnimatedSprite2D" parent="Center_characters"]
 material = SubResource("ShaderMaterial_kf8g8")
-position = Vector2(55, 320)
+position = Vector2(55, 32)
 scale = Vector2(1.41066, 1.41066)
 sprite_frames = SubResource("SpriteFrames_33dva")
-animation = &"happy"
+animation = &"empty"
 centered = false
+
+[node name="Audio" type="AudioStreamPlayer" parent="Center_characters/grandpa"]
+stream = ExtResource("10_d6x8y")
