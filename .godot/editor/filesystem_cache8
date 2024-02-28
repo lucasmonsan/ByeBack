@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1709129209
+::res://::1709143173
 credits.txt::TextFile::-1::1709118225::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1709118225::0::1::::<><>::
 icon.svg::CompressedTexture2D::5707843577014735591::1709118225::1709118225::1::::<><>::
@@ -37,7 +37,7 @@ grandpa_idle2.svg::CompressedTexture2D::1872305163151462691::1709118225::1709118
 grandpa_sad0.svg::CompressedTexture2D::2447987994832231120::1709118225::1709118225::1::::<><>::
 grandpa_sad1.svg::CompressedTexture2D::1711804348445323210::1709118225::1709118225::1::::<><>::
 grandpa_sad2.svg::CompressedTexture2D::4409227817125117551::1709118225::1709118225::1::::<><>::
-::res://assets/fonts/::1709132793
+::res://assets/fonts/::1709132810
 04B_30__.TTF::FontFile::3581567514096688428::1709118225::1709118225::1::::<><>::
 Cloude_Regular_1.02.otf::FontFile::8544056309897741340::1709118225::1709118225::1::::<><>::
 Cloude_Regular_Bold_1.02.otf::FontFile::4826325263307748440::1709118225::1709118225::1::::<><>::
@@ -70,12 +70,12 @@ Retro10.mp3::AudioStreamMP3::3558445863928999585::1709118225::1709118225::1::::<
 09.mp3::AudioStreamMP3::1232829821698566947::1709118225::1709118225::1::::<><>::
 10.mp3::AudioStreamMP3::778979298104768309::1709118225::1709118225::1::::<><>::
 11.mp3::AudioStreamMP3::867979212421515295::1709118225::1709118225::1::::<><>::
-::res://assets/shaders/::1709131689
+::res://assets/shaders/::1709136942
 h_infinity.gdshader::Shader::-1::1709118225::0::1::::<><>::
 shake.gdshader::Shader::-1::1709118225::0::1::::<><>::
-wave.gdshader::Shader::-1::1709131689::0::1::::<><>::
-::res://assets/themes/::1709131668
-Monsan_Pixel.tres::Theme::5268150971900734846::1709131668::0::1::::<><>::uid://b6e2p274io06p::::res://assets/fonts/Comicoro.ttf<>uid://ca054v8gqxq0o::::res://assets/fonts/Cloude_Regular_Bold_1.02.otf<>uid://dh8m0ce5hjrx0::::res://assets/ui/button0.webp<>uid://cqdw8ej2etgff::::res://assets/ui/talk_baloon.webp<>uid://lnpurlq2xk0n::::res://assets/ui/button1.webp
+wave.gdshader::Shader::-1::1709136942::0::1::::<><>::
+::res://assets/themes/::1709134102
+Monsan_Pixel.tres::Theme::5268150971900734846::1709134102::0::1::::<><>::uid://x7o4uyblrco1::::res://assets/fonts/rainyhearts.ttf<>uid://dh8m0ce5hjrx0::::res://assets/ui/button0.webp<>uid://cqdw8ej2etgff::::res://assets/ui/talk_baloon.webp<>uid://lnpurlq2xk0n::::res://assets/ui/button1.webp
 ::res://assets/ui/::1709131315
 button0.webp::CompressedTexture2D::7719481783789031651::1709131272::1709131315::1::::<><>::
 button1.webp::CompressedTexture2D::799861572244493487::1709131307::1709131315::1::::<><>::
@@ -85,18 +85,18 @@ talk_baloon.webp::CompressedTexture2D::5903450929126119359::1709118225::17091182
 talk_baloon_generic.webp::CompressedTexture2D::8086543578910665049::1709118225::1709118225::1::::<><>::
 ::res://scenes/::1709118225
 ::res://scenes/game/::1709118225
-::res://scenes/game/external/::1709131689
-grandpa_house.tscn::PackedScene::8747702854664951489::1709131689::0::1::::<><>::res://assets/shaders/h_infinity.gdshader<>uid://k6v1s3paorr5::::res://assets/backgrounds/grandpa/external_house1.webp<>uid://cdyyrwkx5ar6g::::res://assets/backgrounds/grandpa/external_house0.webp<>uid://kejctpuyym07::::res://assets/backgrounds/grandpa/external_house2.webp<>uid://cmft2b04e12xm::::res://assets/backgrounds/grandpa/external_house3.webp<>uid://bf2a5dhip4ie4::::res://assets/backgrounds/grandpa/external_house4.webp
-::res://scenes/globals/::1709131689
+::res://scenes/game/external/::1709136940
+grandpa_house.tscn::PackedScene::8747702854664951489::1709136940::0::1::::<><>::res://assets/shaders/h_infinity.gdshader<>uid://k6v1s3paorr5::::res://assets/backgrounds/grandpa/external_house1.webp<>uid://cdyyrwkx5ar6g::::res://assets/backgrounds/grandpa/external_house0.webp<>uid://kejctpuyym07::::res://assets/backgrounds/grandpa/external_house2.webp<>uid://cmft2b04e12xm::::res://assets/backgrounds/grandpa/external_house3.webp<>uid://bf2a5dhip4ie4::::res://assets/backgrounds/grandpa/external_house4.webp
+::res://scenes/globals/::1709135281
 background.tscn::PackedScene::8251859524446406751::1709118225::0::1::::<><>::
 bg_music.tscn::PackedScene::2238711615998901322::1709118225::0::1::::<><>::uid://hly5amssvtuf::::res://assets/musics/Journey_Title.mp3<>uid://dy337d2ui6but::::res://assets/musics/Childhood_Friends.mp3
 bg_sfx.tscn::PackedScene::704576566105980653::1709127459::0::1::::<><>::uid://baqoephnka2g4::::res://assets/sfx/ambience/strong wind blowing.mp3<>uid://cqg7cymh1eyjp::::res://assets/sfx/ambience/forest.mp3
-choices.tscn::PackedScene::9117820848641056292::1709131689::0::1::::<><>::uid://b0fdggfmptrjy::::res://assets/sfx/ui/click01.mp3<>uid://dbxuwwcsa7kih::::res://assets/sfx/ui/ALERT_Error.mp3<>uid://dkri44pdnxlqi::::res://assets/ui/cursor0.webp
+choices.tscn::PackedScene::9117820848641056292::1709135281::0::1::::<><>::uid://b0fdggfmptrjy::::res://assets/sfx/ui/click01.mp3<>uid://dbxuwwcsa7kih::::res://assets/sfx/ui/ALERT_Error.mp3<>uid://dkri44pdnxlqi::::res://assets/ui/cursor0.webp
 debug.tscn::PackedScene::1679990349022982692::1709119418::0::1::::<><>::
 foreground.tscn::PackedScene::3277929966335113113::1709118225::0::1::::<><>::
-game.tscn::PackedScene::6069498683010037422::1709131689::0::1::::<><>::
+game.tscn::PackedScene::6069498683010037422::1709135280::0::1::::<><>::
 palette.gd::GDScript::-1::1709118225::0::1::::<>Node<>::
-story.tscn::PackedScene::212832071980595012::1709131054::0::1::::<><>::uid://fupemohhkbqo::::res://assets/characters/grandpa/grandpa_happy0.svg<>res://assets/shaders/wave.gdshader<>uid://hkjeyjbrmraa::::res://assets/characters/empty.webp<>uid://bhkgp6uuqfayh::::res://assets/characters/grandpa/grandpa_happy1.svg<>uid://b3r0hlo6cy1v::::res://assets/characters/grandpa/grandpa_happy2.svg<>uid://c7keah4depefa::::res://assets/characters/grandpa/grandpa_idle0.svg<>uid://tbsfw0h41iqg::::res://assets/characters/grandpa/grandpa_idle1.svg<>uid://1w7ue6htxa56::::res://assets/characters/grandpa/grandpa_idle2.svg<>uid://ba43aflta2b0c::::res://assets/characters/grandpa/grandpa_sad0.svg<>uid://ynhfxwispbqo::::res://assets/characters/grandpa/grandpa_sad1.svg<>uid://b324lqw4fr71d::::res://assets/characters/grandpa/grandpa_sad2.svg<>uid://d20phgl1r0nyc::::res://assets/sfx/voices/04.mp3
-::res://scenes/menus/::1709131101
+story.tscn::PackedScene::212832071980595012::1709135281::0::1::::<><>::uid://fupemohhkbqo::::res://assets/characters/grandpa/grandpa_happy0.svg<>res://assets/shaders/wave.gdshader<>uid://hkjeyjbrmraa::::res://assets/characters/empty.webp<>uid://bhkgp6uuqfayh::::res://assets/characters/grandpa/grandpa_happy1.svg<>uid://b3r0hlo6cy1v::::res://assets/characters/grandpa/grandpa_happy2.svg<>uid://c7keah4depefa::::res://assets/characters/grandpa/grandpa_idle0.svg<>uid://tbsfw0h41iqg::::res://assets/characters/grandpa/grandpa_idle1.svg<>uid://1w7ue6htxa56::::res://assets/characters/grandpa/grandpa_idle2.svg<>uid://ba43aflta2b0c::::res://assets/characters/grandpa/grandpa_sad0.svg<>uid://ynhfxwispbqo::::res://assets/characters/grandpa/grandpa_sad1.svg<>uid://b324lqw4fr71d::::res://assets/characters/grandpa/grandpa_sad2.svg<>uid://d20phgl1r0nyc::::res://assets/sfx/voices/04.mp3
+::res://scenes/menus/::1709135281
 splash.tscn::PackedScene::3986600516852484278::1709118225::0::1::::<><>::uid://blj6h4yt4kqya::::res://assets/animations/godot_icon_splash.webp<>uid://cqx1i8ikkjjc4::::res://assets/fonts/KiwiSoda.ttf
-title.tscn::PackedScene::5422842837694382837::1709131101::0::1::::<><>::res://assets/shaders/h_infinity.gdshader<>uid://3aoi4byo33xl::::res://assets/backgrounds/night sky/0.webp<>uid://dulby0b62yw5t::::res://assets/backgrounds/night sky/1.webp<>uid://cm06bue00lp17::::res://assets/backgrounds/night sky/2.webp<>uid://b681ypbmh5p4e::::res://assets/backgrounds/night sky/3.webp<>uid://cfs25ckuu7wqw::::res://assets/backgrounds/night sky/4.webp<>uid://cebawvq83mnu::::res://assets/animations/falling_star.webp<>uid://bra65ndlt0btk::::res://assets/fonts/04B_30__.TTF
+title.tscn::PackedScene::5422842837694382837::1709135281::0::1::::<><>::res://assets/shaders/h_infinity.gdshader<>uid://3aoi4byo33xl::::res://assets/backgrounds/night sky/0.webp<>uid://dulby0b62yw5t::::res://assets/backgrounds/night sky/1.webp<>uid://cm06bue00lp17::::res://assets/backgrounds/night sky/2.webp<>uid://b681ypbmh5p4e::::res://assets/backgrounds/night sky/3.webp<>uid://cfs25ckuu7wqw::::res://assets/backgrounds/night sky/4.webp<>uid://cebawvq83mnu::::res://assets/animations/falling_star.webp<>uid://bra65ndlt0btk::::res://assets/fonts/04B_30__.TTF

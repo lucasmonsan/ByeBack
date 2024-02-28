@@ -24,7 +24,7 @@ func _process(_delta):
 			Game._tween(BgMusic.title, \"volume_db\", -80, 3)
 			await get_tree().create_timer(1).timeout
 			Story.npc = \"grandpa\"
-			Story._dialog(\"Me conta.... Ocê já descobriu por quê só tem estrela no céu de noite?\")
+			Story._dialog(\"Me conta... Ocê já descobriu por quê só tem estrela no céu de noite?\")
 		elif (Game.step == 2):
 			Choices._normal(\"...\", \"Descobri sim, vô!\")
 		elif (Game.step == 3):
@@ -46,7 +46,7 @@ func _process(_delta):
 		elif (Game.step == 6):
 			if (Game.choice == \"...\"):
 				Story.animation = \"sad_talk\"
-				Story._dialog(\"Desculpa o vô pela piada.. Só queria aliviar o clima um pouquinho.\")
+				Story._dialog(\"Desculpa o vô pela piada. Só queria aliviar o clima um pouquinho.\")
 			elif (Game.choice == \"Descobri sim, vô!\"):
 				Story.animation = \"happy_talk\"
 				Story._dialog(\"Aposto que não é o que ocê achava que era antigamente.\")
@@ -57,10 +57,10 @@ func _process(_delta):
 			if (Game.choice == \"...\") or (Game.choice == \"Sim, era outra coisa mesmo.\"):
 				Story.text_speed = 0.25
 				Story.animation = \"sad_idle\"
-				Story._dialog(\".. .. .. \")
+				Story._dialog(\". . .\")
 			elif (Game.choice == \"Tudo bem. Eu que tô irritante hoje.\"):
 				Story.animation = \"normal_idle\"
-				Story._dialog(\"Tem problema não.. Imagino o furdunço que deve tá a sua cabecinha.\")
+				Story._dialog(\"Tem problema não. Imagino o furdunço que deve tá a sua cabecinha.\")
 			elif (Game.choice == \"Eu era uma criança ingênua!\"):
 				Story.animation = \"happy_talk\"
 				Story._dialog(\"Lembro do cê falando que era as pessoa do céu iluminando pros astronautas não ficá perdido.\")
@@ -70,10 +70,10 @@ func _process(_delta):
 			if (Game.choice == \"...\") or (Game.choice == \"Sim, era outra coisa mesmo.\"):
 				Story.text_speed = 0.25
 				Story.animation = \"sad_idle\"
-				Story._dialog(\".. .. .. \")
+				Story._dialog(\"Mas que bão que ocê voltou... Já faz um tempão, né...\")
 			elif (Game.choice == \"Tudo bem. Eu que tô irritante hoje.\"):
 				Story.animation = \"normal_idle\"
-				Story._dialog(\"Tem problema não.. Imagino o furdunço que deve tá a sua cabecinha.\")
+				Story._dialog(\".\")
 			elif (Game.choice == \"Eu era uma criança ingênua!\"):
 				Story.animation = \"happy_talk\"
 				Story._dialog(\"Lembro do cê falando que era as pessoa do céu iluminando pros astronautas não ficá perdido.\")
