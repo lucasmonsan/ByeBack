@@ -14,6 +14,7 @@ resource_name = "title"
 script/source = "extends CanvasLayer
 
 func _ready():
+	$VBox_ui.modulate = Color(\"FFF0\")
 	Background._change(Palette.dark_sky)
 	Foreground._fade_in(1.0)
 	Game.touch = false

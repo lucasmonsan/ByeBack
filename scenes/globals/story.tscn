@@ -1,11 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://dbdkv8jm6pk3"]
+[gd_scene load_steps=20 format=3 uid="uid://dbdkv8jm6pk3"]
 
 [ext_resource type="Texture2D" uid="uid://fupemohhkbqo" path="res://assets/characters/grandpa/grandpa_happy0.svg" id="1_qwxrj"]
 [ext_resource type="Shader" path="res://assets/shaders/wave.gdshader" id="2_0wlry"]
 [ext_resource type="Texture2D" uid="uid://hkjeyjbrmraa" path="res://assets/characters/empty.webp" id="2_egdgl"]
 [ext_resource type="Texture2D" uid="uid://bhkgp6uuqfayh" path="res://assets/characters/grandpa/grandpa_happy1.svg" id="2_qwaoy"]
+[ext_resource type="Texture2D" uid="uid://dv2f0mvyh6esw" path="res://assets/characters/grandpa/grandpa_disgust0.svg" id="2_tdph5"]
+[ext_resource type="Texture2D" uid="uid://c5vthwnru61d0" path="res://assets/characters/grandpa/grandpa_disgust1.svg" id="3_7xtb7"]
 [ext_resource type="Texture2D" uid="uid://b3r0hlo6cy1v" path="res://assets/characters/grandpa/grandpa_happy2.svg" id="3_18bix"]
 [ext_resource type="Texture2D" uid="uid://c7keah4depefa" path="res://assets/characters/grandpa/grandpa_idle0.svg" id="4_0nm06"]
+[ext_resource type="Texture2D" uid="uid://d028bvt8qofde" path="res://assets/characters/grandpa/grandpa_disgust2.svg" id="4_2x5ul"]
 [ext_resource type="Texture2D" uid="uid://tbsfw0h41iqg" path="res://assets/characters/grandpa/grandpa_idle1.svg" id="5_yf34m"]
 [ext_resource type="Texture2D" uid="uid://1w7ue6htxa56" path="res://assets/characters/grandpa/grandpa_idle2.svg" id="6_1owr1"]
 [ext_resource type="Texture2D" uid="uid://ba43aflta2b0c" path="res://assets/characters/grandpa/grandpa_sad0.svg" id="7_sn2r0"]
@@ -18,7 +21,6 @@ resource_name = "story"
 script/source = "extends CanvasLayer
 var npc = \"\"
 var animation = \"empty\"
-var text_speed = 0.05
 
 @onready var rich_text = $Panel/RichText
 @onready var grandpa = $Center_characters/grandpa
@@ -27,11 +29,10 @@ func _ready():
 	visible = false
 	for child in get_children(): child.modulate = Color(\"FFF0\")
 
-func _dialog(text = \"\"):
+func _dialog(text, speed = 0.05):
 	Game._step_once()
 	Game._tween(rich_text, \"modulate\", Color(\"FFF0\"), 0.25)
 	await get_tree().create_timer(0.5).timeout
-	var text_array = text.split(\"| \")
 	var array_count = 0
 	visible = true
 	
@@ -39,10 +40,7 @@ func _dialog(text = \"\"):
 	var current_npc = \"Center_characters/\" + npc
 	Game._tween($Center_characters, \"modulate\", Color(\"FFF\"), 0.5)
 	
-	if (animation != \"empty\"):
-		get_node(current_npc).play(animation)
-	
-	rich_text.text = \"[center]\" + text_array[array_count]
+	rich_text.text = \"[center]\" + text[array_count]
 	rich_text.visible_characters = 0
 	rich_text.visible_ratio = 0
 	
@@ -50,16 +48,19 @@ func _dialog(text = \"\"):
 	Game._tween(rich_text, \"modulate\", Color(\"FFF\"), 0.5)
 	Game._tween($Label_name, \"modulate\", Color(\"FFF\"), 0.5)
 	
-	while (array_count < text_array.size()):
+	while (array_count < text.size()):
+		get_node(current_npc).play(animation)
+		
 		while rich_text.visible_characters < (rich_text.text.length() - _extract_bbcode_tags(rich_text.text)):
 			if (rich_text.visible_characters % 2 == 1): get_node(str(current_npc + \"/Audio\")).play()
 			rich_text.visible_characters += 1
-			await get_tree().create_timer(text_speed).timeout
+			await get_tree().create_timer(speed).timeout
 		
-		if (array_count < text_array.size() -1):
-			await (get_tree().create_timer(text_speed * 5).timeout)
+		if (array_count < text.size() -1):
+			get_node(current_npc).stop()
+			await (get_tree().create_timer(speed * 5).timeout)
 			array_count += 1
-			rich_text.text += \" \" + text_array[array_count]
+			rich_text.text += \" \" + text[array_count]
 		else: break
 	
 	if (npc != \"\"): get_node(current_npc).stop()
@@ -102,6 +103,28 @@ shader_parameter/intensity = 4.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_33dva"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tdph5")
+}],
+"loop": false,
+"name": &"disgust_idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tdph5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7xtb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2x5ul")
+}],
+"loop": true,
+"name": &"disgust_talk",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_egdgl")
@@ -229,7 +252,7 @@ material = SubResource("ShaderMaterial_kf8g8")
 position = Vector2(55, 32)
 scale = Vector2(1.41066, 1.41066)
 sprite_frames = SubResource("SpriteFrames_33dva")
-animation = &"empty"
+animation = &"disgust_talk"
 centered = false
 
 [node name="Audio" type="AudioStreamPlayer" parent="Center_characters/grandpa"]

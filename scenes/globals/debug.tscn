@@ -11,6 +11,7 @@ func _process(_delta):
 
 [node name="Debug" type="CanvasLayer"]
 layer = 6
+visible = false
 script = SubResource("GDScript_pb56q")
 
 [node name="Label" type="Label" parent="."]
