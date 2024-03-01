@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dbdkv8jm6pk3"]
+[gd_scene load_steps=23 format=3 uid="uid://dbdkv8jm6pk3"]
 
 [ext_resource type="Texture2D" uid="uid://fupemohhkbqo" path="res://assets/characters/grandpa/grandpa_happy0.svg" id="1_qwxrj"]
 [ext_resource type="Shader" path="res://assets/shaders/wave.gdshader" id="2_0wlry"]
@@ -14,7 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://ba43aflta2b0c" path="res://assets/characters/grandpa/grandpa_sad0.svg" id="7_sn2r0"]
 [ext_resource type="Texture2D" uid="uid://ynhfxwispbqo" path="res://assets/characters/grandpa/grandpa_sad1.svg" id="8_2j61w"]
 [ext_resource type="Texture2D" uid="uid://b324lqw4fr71d" path="res://assets/characters/grandpa/grandpa_sad2.svg" id="9_58xeg"]
+[ext_resource type="Texture2D" uid="uid://dmq5cwgp6ocpo" path="res://assets/characters/grandpa/grandpa_love0.svg" id="9_228xy"]
+[ext_resource type="Texture2D" uid="uid://hh67hbbe0q85" path="res://assets/characters/grandpa/grandpa_love1.svg" id="10_2h81m"]
 [ext_resource type="AudioStream" uid="uid://d20phgl1r0nyc" path="res://assets/sfx/voices/04.mp3" id="10_d6x8y"]
+[ext_resource type="Texture2D" uid="uid://dtitiogrkiu1t" path="res://assets/characters/grandpa/grandpa_love2.svg" id="11_1o8ph"]
 
 [sub_resource type="GDScript" id="GDScript_pj7so"]
 resource_name = "story"
@@ -120,6 +123,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_2x5ul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7xtb7")
 }],
 "loop": true,
 "name": &"disgust_talk",
@@ -150,9 +156,37 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_18bix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qwaoy")
 }],
 "loop": true,
 "name": &"happy_talk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_228xy")
+}],
+"loop": false,
+"name": &"love_idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_228xy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2h81m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1o8ph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2h81m")
+}],
+"loop": true,
+"name": &"love_talk",
 "speed": 8.0
 }, {
 "frames": [{
@@ -172,6 +206,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_1owr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yf34m")
 }],
 "loop": true,
 "name": &"normal_talk",
@@ -194,6 +231,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("9_58xeg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2j61w")
 }],
 "loop": true,
 "name": &"sad_talk",
@@ -252,7 +292,8 @@ material = SubResource("ShaderMaterial_kf8g8")
 position = Vector2(55, 32)
 scale = Vector2(1.41066, 1.41066)
 sprite_frames = SubResource("SpriteFrames_33dva")
-animation = &"disgust_talk"
+animation = &"love_talk"
+frame_progress = 0.744331
 centered = false
 
 [node name="Audio" type="AudioStreamPlayer" parent="Center_characters/grandpa"]

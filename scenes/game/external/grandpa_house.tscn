@@ -15,7 +15,7 @@ func _ready():
 	Background._change(Palette.dark_sky)
 	Foreground._fade_in()
 	await get_tree().create_timer(1).timeout
-	Game.step = 1
+	Game._next_step()
 
 func _process(_delta):
 	if Game.day == 1:
@@ -23,18 +23,19 @@ func _process(_delta):
 			Game._step_once()
 			Game._tween(BgMusic.title, \"volume_db\", -80, 3)
 			await get_tree().create_timer(1).timeout
-			Story.npc = \"grandpa\"
-			Story._dialog([\"Me conta...\", \"Ocê já descobriu por quê só tem estrela no céu de noite?\"])
+			Game._next_step()
 		elif (Game.step == 2):
-			Choices._normal(\"...\", \"Descobri sim, vô!\")
+			Story.npc = \"grandpa\"
+			Story._dialog([\"Então...\", \"Ocê já descobriu por quê só tem estrela no céu de noite?\"])
 		elif (Game.step == 3):
-			if (Game.choice == \"...\"):
-				Story._dialog([\"Ocê num tá pra prosa hoje, né.\"])
-			elif (Game.choice == \"Descobri sim, vô!\"):
-				Story._dialog([\"Ainda bem que ocê voltô pra me contá então!\"])
+			Choices._normal(\"...\")
 		elif (Game.step == 4):
-			Choices._full_page()
+			if (Game.choice == \"...\"): Game._next_step()
 		elif (Game.step == 5):
+			Story._dialog([\"Ocê num tá pra prosa hoje, né.\"])
+		elif (Game.step == 6):
+			Choices._full_page()
+		elif (Game.step == 7):
 			Game._step_once()
 			await get_tree().create_timer(1).timeout
 			Story._end(1)
@@ -45,72 +46,73 @@ func _process(_delta):
 			BgSfx.forest.play()
 			await get_tree().create_timer(4).timeout
 			Game._next_step()
-		elif (Game.step == 6):
-			if (Game.choice == \"...\"):
-				Story.animation = \"sad_talk\"
-				Story._dialog([\"Desculpa o vô pela piada.\", \"Só queria aliviar o clima um pouquinho.\"])
-			elif (Game.choice == \"Descobri sim, vô!\"):
-				Story.animation = \"happy_talk\"
-				Story._dialog([\"Aposto que não é o que ocê achava que era antigamente.\"])
-		elif (Game.step == 7):
-			if (Game.choice == \"...\"):
-				Choices._normal(\"...\", \"Tudo bem. Eu que tô\\nirritante hoje.\")
-			elif (Game.choice == \"Descobri sim, vô!\"):
-				Choices._normal(\"Sim, era outra\\ncoisa mesmo.\", \"Eu era uma criança\\ningênua!\")
 		elif (Game.step == 8):
-			if (Game.choice == \"...\") or (Game.choice == \"Sim, era outra\\ncoisa mesmo.\"):
-				Story.animation = \"sad_idle\"
-				Story._dialog([\".\", \".\", \".\"], 0.1)
-			elif (Game.choice == \"Tudo bem. Eu que tô\\nirritante hoje.\"):
-				Story.animation = \"normal_idle\"
-				Story._dialog([\"Tem problema não.\", \"Imagino o furdunço que deve tá a sua cabecinha.\"])
-			elif (Game.choice == \"Eu era uma criança\\ningênua!\"):
-				Story.animation = \"happy_talk\"
-				Story._dialog([\"Lembro do cê falando que era as pessoa do céu iluminando pros astronautas não ficá perdido.\"])
+			Story.animation = \"sad_talk\"
+			Story._dialog([\"Desculpa o vô pela piada.\", \"Só queria aliviar o clima um pouquinho.\"])
 		elif (Game.step == 9):
-			Choices._full_page()
+			Choices._normal(\"Tudo bem. Eu que tô\\nmeio borocoxô hoje.\")
 		elif (Game.step == 10):
-			if (Game.choice == \"...\") or (Game.choice == \"Sim, era outra\\ncoisa mesmo.\"):
-				Story._dialog([\"Mas que bão que ocê veio...\", \"Já faz um tempão, né...\", \"Como que tá a vida lá na cidade?\"])
-			elif (Game.choice == \"Tudo bem. Eu que tô\\nirritante hoje.\"):
-				Story._dialog([\"Mas ocê tá aqui agora, e tinha um tempão que eu num te via.\", \"Como que tão as coisa lá na cidade?\"])
-			elif (Game.choice == \"Eu era uma criança\\ningênua!\"):
-				Story._dialog([\"E ocê já tinha seus 12 anos já.\", \"Num era tão criança mais não.\"])
+			if (Game.choice == \"Tudo bem. Eu que tô\\nmeio borocoxô hoje.\"): Game._next_step()
 		elif (Game.step == 11):
-			if (Game.choice == \"...\") or (Game.choice == \"Sim, era outra\\ncoisa mesmo.\"):
-				Choices._normal(\"Tá indo... Bem.\", \"Não quero falar\\nsobre isso.\")
-			elif (Game.choice == \"Tudo bem. Eu que tô\\nirritante hoje.\"):
-				Choices._normal(\"Tá indo... Bem.\", \"Não quero falar\\nsobre isso.\")
-			elif (Game.choice == \"Eu era uma criança\\ningênua!\"):
-				Choices._normal(\"Eu tava com tanta\\nsaudade disso!\", \"Eu só tinha\\n6 anos, vô!\")
+			Story.animation = \"normal_talk\"
+			Story._dialog([\"Tem problema não.\", \"Imagino o furdunço que deve tá a sua cabecinha.\"])
 		elif (Game.step == 12):
-			if (Game.choice == \"Tá indo... Bem.\"):
-				Story.animation = \"normal_talk\"
-				Story._dialog([\"Num sei não.\", \"Ocê pode ter crescido, mas ainda não consegue me enganar.\"])
-			elif (Game.choice == \"Não quero falar\\nsobre isso.\"):
-				Story.animation = \"sad_talk\"
-				Story._dialog([\"Tudo bem\", \"Desculpa eu de novo.\", \"É só um tiquim de preocupação mesmo.\"])
-			elif (Game.choice == \"Eu tava com tanta saudade disso!\"):
-				Story.animation = \"normal_talk\"
-				Story._dialog([\"Ainda bem.\", \"Eu tava achano que ía morrer sem ver ocê de novo.\"])
-			elif (Game.choice == \"Eu só tinha\\n6 anos, vô!\"):
-				Story.animation = \"disgust_talk\"
-				Story._dialog([\"Tá chamando eu de caduco?\"])
-		elif (Game.step == 13):
 			Choices._full_page()
+		elif (Game.step == 13):
+			Story._dialog([\"Então calma, respira, que vai dá tudo certo.\"])
 		elif (Game.step == 14):
-			if (Game.choice == \"Tá indo... Bem.\"):
-				Story._dialog([\"Mas se ocê num quer contar, tudo bem.\", \"Sei que ocê sabe que eu tô aqui sempre que precisar.\"])
-			elif (Game.choice == \"Não quero falar\\nsobre isso.\"):
-				Story.animation = \"sad_talk\"
-				#Story._dialog([\"Parece que a cidade não fez bem pro cê.\", \"Que coisa triste.\", \"Ocê era tão serelepe antes.\"])
-				Story._dialog([\"E um tantim de saudade também.\"])
-			elif (Game.choice == \"Eu tava com tanta saudade disso!\"):
-				Story.animation = \"happy_talk\"
-				Story._dialog([\"Mas acalma.\", \"O importante é que ocê voltou, mesmo que tenha sido por...\"])
-			elif (Game.choice == \"Eu só tinha\\n6 anos, vô!\"):
-				Story.animation = \"normal_talk\"
-				Story._dialog([\"Tô com a cabeça melhor que a sua, criança.\"])
+			Choices._normal(\"Eu tava com tanta\\nsaudade do senhor!\")
+		elif (Game.step == 15):
+			if (Game.choice == \"Eu tava com tanta\\nsaudade do senhor!\"): Game._next_step()
+		elif (Game.step == 16):
+			Story.animation = \"happy_talk\"
+			Story._dialog([\"Ainda bem.\", \"Eu tava achano que ía morrer sem ver ocê de novo.\"])
+		elif (Game.step == 17):
+			Choices._full_page()
+		elif (Game.step == 18):
+			Story.animation = \"happy_talk\"
+			Story._dialog([\"Mas ocê tá aqui agora, e é isso que importa.\"])
+		elif (Game.step == 19):
+			Choices._normal(\"É... Eu deveria ter...\")
+		elif (Game.step == 20):
+			if (Game.choice == \"É... Eu deveria ter...\"): Game._next_step()
+		elif (Game.step == 21):
+			Game._step_once()
+			BgSfx.church_bell.play()
+			await get_tree().create_timer(2).timeout
+			Story.grandpa.animation = \"sad_idle\"
+			await get_tree().create_timer(3).timeout
+			Choices._normal(\"O dever me chama!\")
+		elif (Game.step == 22):
+			if (Game.choice == \"O dever me chama!\"): Game._next_step()
+		elif (Game.step == 23):
+			Story.animation = \"normal_talk\"
+			Story._dialog([\"Tem certeza que ocê quer ir?\"])
+		elif (Game.step == 24):
+			Choices._normal(\"Não sei... Tá tudo\\ntão estranho.\")
+		elif (Game.step == 25):
+			if (Game.choice == \"Não sei... Tá tudo\\ntão estranho.\"): Game._next_step()
+		elif (Game.step == 26):
+			Story._dialog([\"Se ocê quiser, pode ficar aqui em casa comigo.\"])
+		elif (Game.step == 27):
+			Choices._normal(\"O senhor não vai?.\")
+		elif (Game.step == 28):
+			if (Game.choice == \"O senhor não vai?.\"): Game._next_step()
+		elif (Game.step == 29):
+			Story._dialog([\"Eu num tenho mais idade pra ficar descendo até a cidade não, criança.\"])
+		elif (Game.step == 30):
+			Choices._full_page()
+		elif (Game.step == 31):
+			Story._dialog([\"\\\"Uma casinha afastada.\", \"Um cantinho só nosso.\\\"\", \"\\nSua vó tinha umas ideia de jerico mesmo.\"])
+		elif (Game.step == 32):
+			Choices._full_page()
+		elif (Game.step == 33):
+			Story.animation = \"love_talk\"
+			Story._dialog([\"Sorte dela que eu ficava molinho só de vê o sorriso dela.\"])
+		elif (Game.step == 34):
+			Choices._full_page()
+		elif (Game.step == 35):
+			Story._dialog([\"Ocê lembra do tanto que era bon...\"])
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kk8ku"]
