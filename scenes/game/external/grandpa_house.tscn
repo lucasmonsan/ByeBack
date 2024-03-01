@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwvpngqogirmf"]
+[gd_scene load_steps=16 format=3 uid="uid://dwvpngqogirmf"]
 
 [ext_resource type="Shader" path="res://assets/shaders/h_infinity.gdshader" id="1_b2v84"]
 [ext_resource type="Texture2D" uid="uid://k6v1s3paorr5" path="res://assets/backgrounds/grandpa/external_house1.webp" id="1_sb4fp"]
@@ -6,10 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://kejctpuyym07" path="res://assets/backgrounds/grandpa/external_house2.webp" id="4_sbxk1"]
 [ext_resource type="Texture2D" uid="uid://cmft2b04e12xm" path="res://assets/backgrounds/grandpa/external_house3.webp" id="5_shxer"]
 [ext_resource type="Texture2D" uid="uid://bf2a5dhip4ie4" path="res://assets/backgrounds/grandpa/external_house4.webp" id="6_adwa1"]
+[ext_resource type="Texture2D" uid="uid://delmw84xwjxxp" path="res://assets/backgrounds/misc/smoke_animation.webp" id="7_5xmgx"]
 
 [sub_resource type="GDScript" id="GDScript_aebht"]
 resource_name = "grandpa_house"
 script/source = "extends CanvasLayer
+
+@onready var chimey_smoke = $Control_house_bg/smoke
 
 func _ready():
 	Background._change(Palette.dark_sky)
@@ -113,12 +116,74 @@ func _process(_delta):
 			Choices._full_page()
 		elif (Game.step == 35):
 			Story._dialog([\"Ocê lembra do tanto que era bon...\"])
+		elif (Game.step == 36):
+			Game._step_once()
+			Game._tween(chimey_smoke, \"modulate\", Color(\"FFF\"), 1.0)
+			await get_tree().create_timer(3).timeout
+			Choices._normal(\"Vô...\")
+		elif (Game.step == 37):
+			if (Game.choice == \"Vô...\"): Game._next_step()
+		elif (Game.step == 38):
+			Story.animation = \"normal_talk\"
+			Story._dialog([\"Oi, criança.\"])
+		elif (Game.step == 39):
+			Choices._normal(\"O senhor deixou alguma\\nalguma coisa no fogão?\")
+		elif (Game.step == 40):
+			if (Game.choice == \"O senhor deixou alguma\\nalguma coisa no fogão?\"): Game._next_step()
+		elif (Game.step == 41):
+			Game._step_once()
+			await get_tree().create_timer(3).timeout
+			Story.animation = \"perplex_talk\"
+			Story._dialog([\"MINHA SOPA DE CEBOLA...\"])
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kk8ku"]
 shader = ExtResource("1_b2v84")
 shader_parameter/speed = 0.005
 shader_parameter/texture = ExtResource("2_34510")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f77ep"]
+atlas = ExtResource("7_5xmgx")
+region = Rect2(0, 0, 64, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sebtk"]
+atlas = ExtResource("7_5xmgx")
+region = Rect2(64, 0, 64, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a7sy"]
+atlas = ExtResource("7_5xmgx")
+region = Rect2(128, 0, 64, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jewn"]
+atlas = ExtResource("7_5xmgx")
+region = Rect2(192, 0, 64, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fojlg"]
+atlas = ExtResource("7_5xmgx")
+region = Rect2(256, 0, 64, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2f1fk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f77ep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sebtk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a7sy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jewn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fojlg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="GrandpaHouse" type="CanvasLayer"]
 script = SubResource("GDScript_aebht")
@@ -222,5 +287,12 @@ grow_horizontal = 2
 texture = ExtResource("6_adwa1")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="smoke" type="AnimatedSprite2D" parent="Control_house_bg"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(264, 339)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_2f1fk")
+autoplay = "default"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

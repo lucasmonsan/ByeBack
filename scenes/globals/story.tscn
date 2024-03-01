@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dbdkv8jm6pk3"]
+[gd_scene load_steps=26 format=3 uid="uid://dbdkv8jm6pk3"]
 
 [ext_resource type="Texture2D" uid="uid://fupemohhkbqo" path="res://assets/characters/grandpa/grandpa_happy0.svg" id="1_qwxrj"]
 [ext_resource type="Shader" path="res://assets/shaders/wave.gdshader" id="2_0wlry"]
@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://hh67hbbe0q85" path="res://assets/characters/grandpa/grandpa_love1.svg" id="10_2h81m"]
 [ext_resource type="AudioStream" uid="uid://d20phgl1r0nyc" path="res://assets/sfx/voices/04.mp3" id="10_d6x8y"]
 [ext_resource type="Texture2D" uid="uid://dtitiogrkiu1t" path="res://assets/characters/grandpa/grandpa_love2.svg" id="11_1o8ph"]
+[ext_resource type="Texture2D" uid="uid://b7814txv5aj17" path="res://assets/characters/grandpa/grandpa_perplex0.svg" id="15_x1viv"]
+[ext_resource type="Texture2D" uid="uid://dejgbjjrfauo3" path="res://assets/characters/grandpa/grandpa_perplex1.svg" id="16_pfmvg"]
+[ext_resource type="Texture2D" uid="uid://dxh3lqu48chbp" path="res://assets/characters/grandpa/grandpa_perplex2.svg" id="17_ekyyy"]
 
 [sub_resource type="GDScript" id="GDScript_pj7so"]
 resource_name = "story"
@@ -216,6 +219,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("15_x1viv")
+}],
+"loop": false,
+"name": &"perplex_idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_x1viv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pfmvg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ekyyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pfmvg")
+}],
+"loop": true,
+"name": &"perplex_talk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("7_sn2r0")
 }],
 "loop": false,
@@ -274,6 +302,7 @@ theme_type_variation = &"Talk_Ballon"
 [node name="RichText" type="RichTextLabel" parent="Panel"]
 material = SubResource("ShaderMaterial_tg54c")
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
@@ -292,8 +321,7 @@ material = SubResource("ShaderMaterial_kf8g8")
 position = Vector2(55, 32)
 scale = Vector2(1.41066, 1.41066)
 sprite_frames = SubResource("SpriteFrames_33dva")
-animation = &"love_talk"
-frame_progress = 0.744331
+animation = &"perplex_talk"
 centered = false
 
 [node name="Audio" type="AudioStreamPlayer" parent="Center_characters/grandpa"]

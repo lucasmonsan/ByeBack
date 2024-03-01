@@ -18,11 +18,15 @@ Scenario
 		https://free-game-assets.itch.io/free-summer-pixel-art-backgrounds
 	
 	Internal
+	
+	Misc
+		https://nitca.itch.io/animated-smoke-sprite
 
 SFX
 	https://opengameart.org/content/strong-wind-blowing
 	https://nox-sound-design.itch.io/essentials-series-sfx-nox-sound
 	https://thowsenmedia.itch.io/ui-sounds
+	https://opengameart.org/content/37-hitspunches
 
 Dialog SFX
 	https://www.youtube.com/watch?v=ZXzi-gdYUrs
