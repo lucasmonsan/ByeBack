@@ -1,12 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<link rel="stylesheet" href="node_modules/modern-normalize/modern-normalize.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<style>
+			html > div {
+				display: none;
+			}
+			body {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 100%;
+				height: clamp(100dvh, 100dvh, 100dvh);
+				background-color: var(--bg-color);
+			}
+		</style>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
+		<main style="display: contents">%sveltekit.body%</main>
 	</body>
 </html>

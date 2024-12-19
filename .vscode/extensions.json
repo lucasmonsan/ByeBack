@@ -1,0 +1,21 @@
+{
+	"recommendations": [
+		"formulahendry.auto-close-tag",
+		"formulahendry.auto-complete-tag",
+		"steoates.autoimport",
+		"formulahendry.auto-rename-tag",
+		"naumovs.color-highlight",
+		"vunguyentuan.vscode-css-variables",
+		"firefox-devtools.vscode-firefox-debug",
+		"ecmel.vscode-html-css",
+		"wix.vscode-import-cost",
+		"oderwat.indent-rainbow",
+		"ms-ceintl.vscode-language-pack-pt-br",
+		"esbenp.prettier-vscode",
+		"pivaszbs.svelte-autoimport",
+		"miguelsolorio.symbols",
+		"streetsidesoftware.code-spell-checker-portuguese-brazilian",
+		"streetsidesoftware.code-spell-checker",
+		"1yib.svelte-bundle"
+	]
+}
