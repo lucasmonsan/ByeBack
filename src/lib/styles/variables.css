@@ -1,0 +1,6 @@
+:root {
+	--base: clamp(1rem, 1vw + 0.5rem, 2rem);
+
+	--header-h: calc(var(--base) * 3);
+	--footer-h: calc(var(--base) * 3);
+}
