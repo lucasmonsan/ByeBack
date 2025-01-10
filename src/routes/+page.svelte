@@ -16,3 +16,15 @@
 	<button>Opções</button>
 	<button>Fechar</button>
 </main>
+
+<style>
+	h1 {
+		font-family: 'LogoFont', sans-serif;
+		font-size: calc(var(--base) * 3);
+	}
+
+	button {
+		font-family: 'TitleFont', sans-serif;
+		font-size: calc(var(--base) * 1.5);
+	}
+</style>

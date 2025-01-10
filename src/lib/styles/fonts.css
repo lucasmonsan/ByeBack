@@ -1,0 +1,54 @@
+@font-face {
+	font-family: 'LogoFont';
+	src:
+		url('$lib/fonts/logo/FirstDraw.woff2') format('woff2'),
+		url('$lib/fonts/logo/FirstDraw.woff') format('woff'),
+		url('$lib/fonts/logo/FirstDraw.otf') format('opentype'),
+		url('$lib/fonts/logo/FirstDraw.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TitleFont';
+	src:
+		url('$lib/fonts/title/Bosk.woff2') format('woff2'),
+		url('$lib/fonts/title/Bosk.woff') format('woff'),
+		url('$lib/fonts/title/Bosk.otf') format('opentype'),
+		url('$lib/fonts/title/Bosk.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'DescriptionFont';
+	src:
+		url('/lib/fonts/description/CardenioModern_Regular.woff2') format('woff2'),
+		url('/lib/fonts/description/CardenioModern_Regular.woff') format('woff'),
+		url('/lib/fonts/description/CardenioModern_Regular.otf') format('opentype'),
+		url('/lib/fonts/description/CardenioModern_Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'DescriptionFont';
+	src:
+		url('/lib/fonts/description/CardenioModern_Bold.woff2') format('woff2'),
+		url('/lib/fonts/description/CardenioModern_Bold.woff') format('woff'),
+		url('/lib/fonts/description/CardenioModern_Bold.otf') format('opentype'),
+		url('/lib/fonts/description/CardenioModern_Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'DialogFont';
+	src:
+		url('$lib/fonts/logo/GunnyRewritten.woff2') format('woff2'),
+		url('$lib/fonts/logo/GunnyRewritten.woff') format('woff'),
+		url('$lib/fonts/logo/GunnyRewritten.otf') format('opentype'),
+		url('$lib/fonts/logo/GunnyRewritten.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}

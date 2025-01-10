@@ -1,4 +1,5 @@
 <script>
+	import '$lib/styles/fonts.css'
 	import '$lib/styles/variables.css'
 	import '$lib/styles/palette.css'
 	import '$lib/styles/reset.css'
