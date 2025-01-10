@@ -1,0 +1,52 @@
+.column {
+	flex-direction: column;
+}
+
+.ai-center {
+	align-items: center;
+}
+.jc-center {
+	justify-content: center;
+}
+
+.gap-1 {
+	gap: var(--gap-1);
+}
+.gap-2 {
+	gap: var(--gap-2);
+}
+
+.w-100 {
+	width: 100%;
+}
+.hud-h {
+	height: var(--hud-h);
+}
+.gui-h {
+	height: var(--gui-h);
+}
+
+.padd-1 {
+	padding: var(--padd-1);
+}
+.padd-2 {
+	padding: var(--padd-2);
+}
+
+.color-bg {
+	background-color: var(--color-bg);
+}
+.color-text {
+	color: var(--color-text);
+}
+
+.border {
+	border: var(--border);
+}
+
+.radius-1 {
+	border-radius: var(--radius-1);
+}
+.radius-2 {
+	border-radius: var(--radius-2);
+}

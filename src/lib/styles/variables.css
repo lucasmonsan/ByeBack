@@ -1,6 +1,17 @@
 :root {
 	--base: clamp(1rem, 1vw + 0.5rem, 2rem);
 
-	--header-h: calc(var(--base) * 3);
-	--footer-h: calc(var(--base) * 3);
+	--gap-1: calc(var(--base) * 0.5);
+	--gap-2: calc(var(--base) * 1);
+
+	--hud-h: calc(var(--base) * 5);
+	--gui-h: calc(var(--base) * 5);
+
+	--padd-1: calc(var(--base) * 0.5);
+	--padd-2: calc(var(--base) * 1);
+
+	--border: solid 2px var(--color-text);
+
+	--radius-1: calc(var(--base) * 0.25);
+	--radius-2: calc(var(--base) * 0.5);
 }

@@ -46,5 +46,6 @@
 	"editor.inlineSuggest.suppressSuggestions": true,
 	"cody.autocomplete.languages": {
 		"*": true
-	}
+	},
+	"cSpell.words": ["padd"]
 }

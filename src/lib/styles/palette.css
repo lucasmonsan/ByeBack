@@ -1,4 +1,8 @@
 :root {
 	--white: rgb(255, 255, 255);
-	--black: rgb(28, 28, 28);
+	--black: rgb(68, 66, 73);
+	--gray: rgb(162, 161, 164);
+
+	--color-bg: var(--white);
+	--color-text: var(--black);
 }
